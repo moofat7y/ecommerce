@@ -61,9 +61,7 @@ const CartItem = ({ prod, index }) => {
         ></div>
       </td>
       <td className="align-middle">
-        {prod.product.size.map((size) => (
-          <span className="mx-1">{size}</span>
-        ))}
+        <span className="mx-1">{prod?.size}</span>
       </td>
       <td className="align-middle">{prod.product.price} جنيه</td>
       <td className="align-middle">
