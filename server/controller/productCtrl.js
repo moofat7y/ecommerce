@@ -54,6 +54,7 @@ exports.deleteProduct = async (req, res, next) => {
       {},
       { $set: { products: [], totalAfterDiscount: 0, cartTotal: 0 } }
     );
+    await product.delete();
     res.status(200).json({ message: "Product deleted" });
   } catch (error) {
     if (!error.statusCode) {
