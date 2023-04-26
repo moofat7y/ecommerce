@@ -2,7 +2,7 @@ import React from "react";
 import { BsTelephone } from "react-icons/bs";
 
 import UserFeatures from "./UserFeatures";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   AiOutlineAppstore,
   AiOutlineHome,
@@ -31,9 +31,9 @@ const Header = () => {
 
       <nav className="navbar shadow-sm navbar-expand-xl bg-body-tertiary">
         <div className="container d-flex">
-          <a className="navbar-brand order-1  mx-0" href="#">
+          <Link to="/" className="navbar-brand order-1  mx-0">
             E-Commerce
-          </a>
+          </Link>
           <UserFeatures />
           <SearchBox />
           <div
