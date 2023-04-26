@@ -12,7 +12,7 @@ import {
 const Footer = () => {
   return (
     <footer className="py-5 bg-dark">
-      <div className="container">
+      <div className="container pb-5">
         <div className="row justify-content-between">
           <div className="col-12 col-md-6 col-lg-4 p-3">
             <a

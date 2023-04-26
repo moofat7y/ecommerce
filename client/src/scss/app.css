@@ -10960,7 +10960,7 @@ body::-webkit-scrollbar {
     flex-direction: row;
     z-index: 100;
     background-color: white;
-    padding: 15px 25px;
+    padding: 10px 25px;
     border-radius: 30px;
     bottom: 5px;
     left: 50%;
@@ -10973,9 +10973,16 @@ body::-webkit-scrollbar {
   }
   nav.navbar .navbar-nav li a {
     padding: 0px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   nav.navbar .navbar-nav li a.active {
-    color: #003e29;
+    background-color: #003e29;
+    color: white;
   }
 }
 @media (min-width: 768px) {
