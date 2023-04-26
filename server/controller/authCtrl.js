@@ -67,9 +67,7 @@ exports.signUp = async (req, res, next) => {
     };
     sendEmail(data);
 
-    res
-      .status(201)
-      .json({ message: "Thanks! your account has been successfuly created." });
+    res.status(201).json({ message: "شكرا للك! لقد تم انشاء حسابك بنجاح" });
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
@@ -102,7 +100,7 @@ exports.confirmEmail = async (req, res, next) => {
     await user.save();
     await Cart.create({ user: user._id });
 
-    res.status(200).json({ message: "email confirmed" });
+    res.status(200).json({ message: "لقد تم تاكيد حسابك بنجاح" });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
@@ -118,19 +116,19 @@ exports.signIn = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (!user) {
       const error = new Error(
-        `${email} does not have an account. Try a different email or sign up.`
+        `${email} لا يملك حسابا. قم بانشاء حساب اولا او استخدم عنوان اخر`
       );
       error.statusCode = 404;
       throw error;
     }
     if (!user.emailconfirmed) {
-      const error = new Error("Please confirm your email first");
+      const error = new Error("يجب تاكيد حسابك اولا");
       error.statusCode = 422;
       throw error;
     }
     const isPassCorrect = await user.isPasswordMatch(password);
     if (!isPassCorrect) {
-      const error = new Error("Incorrect password");
+      const error = new Error("كلمة المرور خاطئه");
       error.statusCode = 403;
       throw error;
     }
