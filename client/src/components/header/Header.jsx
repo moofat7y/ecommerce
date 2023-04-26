@@ -9,6 +9,8 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import SearchBox from "./SearchBox";
+import { GoHome } from "react-icons/go";
+import { BiStoreAlt } from "react-icons/bi";
 
 const Header = () => {
   return (
@@ -44,13 +46,13 @@ const Header = () => {
               <li className="nav-item d-flex align-items-center">
                 <NavLink to="/" className="nav-link " aria-current="page">
                   <span className="mb-0 d-none d-xl-block">الرئيسيه</span>
-                  <AiOutlineHome className="d-block d-xl-none fs-4" />
+                  <GoHome className="d-block d-xl-none fs-4" />
                 </NavLink>
               </li>
               <li className="nav-item d-flex align-items-center">
                 <NavLink to="/ourstore" className="nav-link">
                   <span className="mb-0 d-none d-xl-block">متجرنا</span>
-                  <AiOutlineAppstore className="d-block d-xl-none fs-4" />
+                  <BiStoreAlt className="d-block d-xl-none fs-4" />
                 </NavLink>
               </li>
 
