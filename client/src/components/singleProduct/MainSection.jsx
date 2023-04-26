@@ -113,7 +113,6 @@ const MainSection = () => {
                       width: "35px",
                       height: "35px",
                       transition: "0.2s",
-                      border: "1px solid black",
                       backgroundColor: `${color.toLowerCase()}`,
                     }}
                   ></li>
