@@ -83,7 +83,7 @@ const MainSection = () => {
                     onClick={() => setProdSize(size)}
                     key={index}
                     role="button"
-                    className={`rounded-circle d-flex justify-content-center align-items-center btn btn-outline-primary  nav-link ${
+                    className={`rounded-circle d-flex justify-content-center align-items-center btn btn-outline-primary ${
                       size === prodSize ? "active" : ""
                     }`}
                     style={{
