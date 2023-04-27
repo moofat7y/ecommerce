@@ -328,7 +328,7 @@ exports.forgotPassword = async (req, res, next) => {
     }
     const user = await User.findOne({ email });
     if (!user) {
-      const error = new Error("This user not exist!");
+      const error = new Error("هذا الحساب غير موجود");
       error.statusCode = 404;
       throw error;
     }
@@ -371,7 +371,7 @@ exports.forgotPassword = async (req, res, next) => {
     };
 
     sendEmail(data);
-    res.status(200).json({ message: "Check your mail" });
+    res.status(200).json({ message: "تفقد الايميل الخاص بك" });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
@@ -398,7 +398,7 @@ exports.resetPassword = async (req, res, next) => {
       passowrdResetExpire: { $gt: Date.now() },
     });
     if (!user) {
-      const error = new Error("Token expires");
+      const error = new Error("انتهي الوقت المحدد");
       error.statusCode = 422;
       throw error;
     }
@@ -407,7 +407,7 @@ exports.resetPassword = async (req, res, next) => {
     user.passowrdResetExpire = undefined;
     user.passwordChangedAt = Date.now();
     await user.save();
-    res.status(201).json({ message: "Password changed" });
+    res.status(201).json({ message: "تم تغيير كلمة المرور بنجاح" });
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;

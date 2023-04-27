@@ -1,4 +1,5 @@
 const Order = require("../models/orderModel");
+const Product = require("../models/productModel");
 const { validationResult } = require("express-validator");
 // GET all orders in deb
 exports.getOrders = async (req, res, next) => {
@@ -51,11 +52,31 @@ exports.updateOrderStatus = async (req, res, next) => {
       error.statusCode = 422;
       throw error;
     }
-    const order = await Order.findByIdAndUpdate(
-      orderId,
-      { orderStatus: status },
-      { new: true }
-    );
+    if (status === "Canceled") {
+      const order = await Order.findByIdAndUpdate(
+        orderId,
+        { orderStatus: status, expireAt: Date.now() + 604800000 },
+        { new: true }
+      );
+      const update = order.products.map((prod) => {
+        return {
+          updateOne: {
+            filter: { _id: prod.product._id },
+            update: {
+              $inc: { quantity: -prod.quantity, sold: +prod.quantity },
+            },
+          },
+        };
+      });
+      await Product.bulkWrite(update, {});
+    } else {
+      await Order.findByIdAndUpdate(
+        orderId,
+        { orderStatus: status },
+        { new: true }
+      );
+    }
+
     res.status(201).json("Order Updated");
   } catch (error) {
     if (!error.statusCode) {

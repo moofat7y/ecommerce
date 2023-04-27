@@ -24,6 +24,11 @@ var orderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    expireAt: {
+      type: Date,
+      expires: "100d",
+      default: null,
+    },
   },
   {
     timestamps: true,
