@@ -309,6 +309,7 @@ exports.createOrder = async (req, res, next) => {
         currency: "egp",
       },
       orderby: _id,
+      expireAt: Date.now() + 8.64e9,
     });
 
     // clear cart after order

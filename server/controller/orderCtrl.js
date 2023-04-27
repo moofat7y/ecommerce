@@ -63,13 +63,27 @@ exports.updateOrderStatus = async (req, res, next) => {
           updateOne: {
             filter: { _id: prod.product._id },
             update: {
-              $inc: { quantity: -prod.quantity, sold: +prod.quantity },
+              $inc: { quantity: +prod.quantity, sold: -prod.quantity },
             },
           },
         };
       });
       await Product.bulkWrite(update, {});
     } else {
+      const order = await Order.findById(orderId);
+      if (order.orderStatus === "Canceled") {
+        const update = order.products.map((prod) => {
+          return {
+            updateOne: {
+              filter: { _id: prod.product._id },
+              update: {
+                $inc: { quantity: -prod.quantity, sold: +prod.quantity },
+              },
+            },
+          };
+        });
+        await Product.bulkWrite(update, {});
+      }
       await Order.findByIdAndUpdate(
         orderId,
         { orderStatus: status },

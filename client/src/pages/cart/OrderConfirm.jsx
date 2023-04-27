@@ -136,6 +136,22 @@ const OrderConfirm = () => {
 
             <div className="input-group mb-3">
               <input
+                {...register("city", {
+                  required: "يجب ادخال اسم المدينه",
+                })}
+                type="text"
+                className={`form-control px-3 py-2 rounded-0 ${
+                  errors.city ? "is-invalid" : ""
+                }`}
+                placeholder="المدينه"
+              />
+              {errors.city ? (
+                <div className="invalid-feedback">{errors.city.message}</div>
+              ) : null}
+            </div>
+
+            <div className="input-group mb-3">
+              <input
                 {...register("streetname", {
                   required: "يجب ادخال اسم الشارع",
                 })}
@@ -143,7 +159,7 @@ const OrderConfirm = () => {
                 className={`form-control px-3 py-2 rounded-0 ${
                   errors.streetname ? "is-invalid" : ""
                 }`}
-                placeholder="اسم الشارع"
+                placeholder="الشارع"
               />
               {errors.streetname ? (
                 <div className="invalid-feedback">

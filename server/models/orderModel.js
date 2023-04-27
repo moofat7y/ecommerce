@@ -14,7 +14,7 @@ var orderSchema = new mongoose.Schema(
     orderStatus: {
       type: String,
       default: "Not Processed",
-      enum: ["Not Processed", "Processing", "Cancelled", "Delivered"],
+      enum: ["Not Processed", "Processing", "Canceled", "Delivered"],
     },
     shipingaddress: {
       type: Object,
