@@ -75,6 +75,10 @@ const MainSection = () => {
             <span className="fw-bold me-2">Availability : </span>
             <span className="text-muted">{product.quantity} in a stock</span>
           </span>
+          <span className="sold">
+            <span className="fw-bold me-2">Sold : </span>
+            <span className="text-muted">{product.sold} sold</span>
+          </span>
           {product.size ? (
             <ul className="p-0 d-flex gap-1 mb-0 sizes">
               {product.size.map((size, index) => {
