@@ -27,7 +27,7 @@ router.put(
       .custom(async (value, { req }) => {
         const isEmailExistBefore = await User.findOne({ email: value });
         if (isEmailExistBefore) {
-          return Promise.reject("This email already used");
+          return Promise.reject(`مستخدم من قبل ${value}`);
         }
       }),
     body(
