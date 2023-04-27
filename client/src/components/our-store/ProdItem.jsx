@@ -21,10 +21,10 @@ const ProdItem = ({ prod, extraClass }) => {
     }
     try {
       if (prod?.size?.length > 0 && !size) {
-        return notifyError("Size is required");
+        return notifyError("من فضلك اختر الحجم");
       }
       if (prod?.colors?.length > 0 && !prodColor) {
-        return notifyError("Color is required");
+        return notifyError("يجب عليك ادخال اللون");
       }
       setCartLoading(true);
 

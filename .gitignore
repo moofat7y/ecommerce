@@ -1,5 +1,11 @@
 node_modules
 .env
 admin
+blogCtrl.js
+blogCategoryCtrl.js
+blogModel.js
+blogCategoryRoute.js
+blogRoute.js
+blogCategoryModel.js
 # stripeRoute.js
 # stripeCtrl.js
