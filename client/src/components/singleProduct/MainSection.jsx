@@ -73,7 +73,11 @@ const MainSection = () => {
           ) : null}
           <span className="availability">
             <span className="fw-bold me-2">Availability : </span>
-            <span className="text-muted">{product.quantity} in a stock</span>
+            {product.quantity > 0 ? (
+              <span className="text-muted">{product.quantity} in a stock</span>
+            ) : (
+              <span className="text-danger">Out of stock</span>
+            )}
           </span>
           <span className="sold">
             <span className="fw-bold me-2">Sold : </span>
@@ -129,7 +133,9 @@ const MainSection = () => {
             <button
               onClick={() => onAdd()}
               disabled={cartLoading}
-              className=" rounded-pill text-capitalize text-dark btn btn-primary text-white shadow-sm"
+              className={`rounded-pill text-capitalize text-dark btn btn-primary text-white shadow-sm ${
+                product.quantity <= 0 ? "disabled" : ""
+              }`}
             >
               add to cart
             </button>

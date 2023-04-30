@@ -10,16 +10,14 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
   const { brands } = brand;
   const { categories } = category;
 
-  const filterRef = useRef();
-  const sliderRef = useRef();
   window.addEventListener("scroll", (e) => {
-    const scrollTop = filterRef.current.offsetTop;
+    const scrollTop = document.getElementById("filterd-ref")?.offsetTop;
     const windowScroll = window.scrollY;
     const elemetOffsetTop = scrollTop - windowScroll;
     if (elemetOffsetTop <= 0) {
-      sliderRef.current.classList.add("fixed-top");
+      document.getElementById("slider-ref")?.classList.add("fixed-top");
     } else {
-      sliderRef.current.classList.remove("fixed-top");
+      document.getElementById("slider-ref")?.classList.remove("fixed-top");
     }
   });
 
@@ -43,10 +41,10 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
   return (
     <div
       className="px-0 d-md-none"
-      ref={filterRef}
+      id="filterd-ref"
       style={{ height: "71.2px" }}
     >
-      <div ref={sliderRef} className=" px-2 col-12 mb-3 bg-white">
+      <div id="slider-ref" className=" px-2 col-12 mb-3 bg-white">
         <div className="mobile-filters py-2">
           <div className="d-flex gap-2 flex-nowrap">
             <div
