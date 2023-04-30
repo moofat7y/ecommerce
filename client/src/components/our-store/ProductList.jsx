@@ -1,13 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ProdItem from "./ProdItem";
+import Lottie from "lottie-react";
+import noProducts from "../../animations/93134-not-found.json";
 
 const ProductList = () => {
   const { products, isLoading } = useSelector((state) => state.product);
 
-  const prod_list = products?.map((prod) => {
-    return <ProdItem key={prod?._id} prod={prod} />;
-  });
+  const prod_list =
+    products.length > 0 ? (
+      products?.map((prod) => {
+        return <ProdItem key={prod?._id} prod={prod} />;
+      })
+    ) : (
+      <div
+        className="d-flex flex-column align-items-center justify-content-center"
+        style={{ height: "70vh" }}
+      >
+        <p className="mb-0 fs-5">لا يوجد منتجات</p>
+        <Lottie animationData={noProducts} />
+      </div>
+    );
   return (
     <div className="products px-2 row">
       {!isLoading ? (

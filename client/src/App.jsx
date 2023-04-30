@@ -34,6 +34,7 @@ import { getFeaturedProducts } from "./features/product/featuredProdSlice";
 import { getPopularProducts } from "./features/product/popularProdSlice";
 import { getProducts } from "./features/product/productSlice";
 import Loading from "./components/loading/Loading";
+import NotFound from "./pages/notfound/NotFound";
 
 function App() {
   const { isLogin } = useSelector((state) => state.auth);
@@ -102,6 +103,7 @@ function App() {
             <Route path="/wishlist" element={<WishList />} />
             <Route path="/my-account" element={<Account />} />
             <Route path="/my-account/edit" element={<Edit />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="/confirm-email/:token/" element={<ConfirmEmail />} />
         </Routes>
