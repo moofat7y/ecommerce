@@ -116,6 +116,18 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
               className="px-0 d-flex flex-wrap gap-2"
               style={{ listStyle: "none" }}
             >
+              <li
+                onClick={() =>
+                  setSortBy((prev) => {
+                    return { ...prev, cat: "all" };
+                  })
+                }
+                className={`nav-item btn btn-light ${
+                  sortBy.cat === "all" || !sortBy.cat ? "active disabled" : ""
+                }`}
+              >
+                الكل
+              </li>
               {categories.map((cat) => {
                 return (
                   <li
@@ -144,6 +156,20 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
               className="px-0 d-flex flex-wrap gap-2"
               style={{ listStyle: "none" }}
             >
+              <li
+                onClick={() =>
+                  setSortBy((prev) => {
+                    return { ...prev, brand: "all" };
+                  })
+                }
+                className={`nav-item btn btn-light ${
+                  sortBy.brand === "all" || !sortBy.brand
+                    ? "active disabled"
+                    : ""
+                }`}
+              >
+                الكل
+              </li>
               {brands.map((brand) => {
                 return (
                   <li
