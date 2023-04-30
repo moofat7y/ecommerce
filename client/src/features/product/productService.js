@@ -1,17 +1,23 @@
 import api from "../../utils/api";
 
 const getProducts = async (query) => {
-  const response = await api.get(`/product/?limit=10&${query ? query : ""}`);
+  const response = await api.get(
+    `/product/?limit=20&quantity[gt]=0&${query ? query : ""}`
+  );
   return response.data;
 };
 
 const getFeaturedProducts = async (query) => {
-  const response = await api.get(`/product/?${query ? query : ""}`);
+  const response = await api.get(
+    `/product/?quantity[gt]=0&${query ? query : ""}`
+  );
   return response.data;
 };
 
 const getPopularProducts = async (query) => {
-  const response = await api.get(`/product/?${query ? query : ""}`);
+  const response = await api.get(
+    `/product/?quantity[gt]=0&${query ? query : ""}`
+  );
   return response.data;
 };
 

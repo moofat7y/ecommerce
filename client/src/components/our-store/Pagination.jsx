@@ -8,14 +8,14 @@ const pages = [];
 const Pagination = ({ setSortBy }) => {
   const { productsCount } = useSelector((state) => state.product);
   const [currentPage, setCurrentPage] = useState(1);
-  const pagesCount = Math.ceil(productsCount / 10);
+  const pagesCount = Math.ceil(productsCount / 20);
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
   return (
     <>
-      {productsCount > 10 ? (
+      {productsCount > 20 ? (
         <nav aria-label="Page navigation example">
           <ul className="pagination px-0">
             <li className="page-item">
@@ -109,7 +109,7 @@ const Pagination = ({ setSortBy }) => {
             </li>
           </ul>
         </nav>
-      ) : null }
+      ) : null}
     </>
   );
 };

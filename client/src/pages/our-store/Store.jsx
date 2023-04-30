@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "../../features/product/productSlice";
 import ProductList from "../../components/our-store/ProductList";
 import Pagination from "../../components/our-store/Pagination";
+import FiltersMobile from "../../components/our-store/FiltersMobile";
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -51,28 +52,12 @@ const Store = () => {
 
       <div className="container">
         <div className="row my-3">
-          <div className="col-2 col-md-4 col-lg-3">
+          <FiltersMobile setSortBy={setSortBy} sortBy={sortBy} />
+
+          <div className="d-none d-md-block col-md-4 col-lg-3 col-xl-2">
             <Filters sortBy={sortBy} setSortBy={setSortBy} />
           </div>
-          <div className="col-10 col-md-8 col-lg-9">
-            <div className="bg-white py-2 px-3 rounded-3">
-              <div className="d-flex align-items-center flex-nowrap">
-                <span className="mx-2 d-inline-block">الترتيب حسب : </span>
-                <select
-                  onChange={(e) =>
-                    setSortBy((prev) => {
-                      return { ...prev, sort: e.target.value };
-                    })
-                  }
-                  className="form-select w-auto z-index-10"
-                >
-                  <option value="all">الكل</option>
-                  <option value="sort=-price">حسب السعر</option>
-                  <option value="sort=-sold">الاعلي مبيعا</option>
-                </select>
-              </div>
-            </div>
-
+          <div className="col-12 col-md-8 col-lg-9 col-xl-10">
             <ProductList />
             <Pagination setSortBy={setSortBy} />
           </div>

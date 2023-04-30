@@ -5,8 +5,6 @@ const Product = require("../models/productModel");
 const Copon = require("../models/coponModel");
 const Order = require("../models/orderModel");
 const uniqid = require("uniqid");
-const { deleteImgFromCloud, uploadImg } = require("../utils/cloudinary");
-const fs = require("fs");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 // GET all users
@@ -326,7 +324,12 @@ exports.createOrder = async (req, res, next) => {
       };
     });
     await Product.bulkWrite(update, {});
-    res.status(201).json(order);
+
+    const orderWithPopProducts = await order.populate(
+      "products.product",
+      "title description images _id price"
+    );
+    res.status(201).json(orderWithPopProducts);
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
@@ -383,7 +386,8 @@ exports.getOrders = async (req, res, next) => {
   const { _id } = req.user;
   try {
     const orders = await Order.find({ orderby: _id }).populate(
-      "products.product"
+      "products.product",
+      "title description images _id price"
     );
 
     res.status(200).json(orders);

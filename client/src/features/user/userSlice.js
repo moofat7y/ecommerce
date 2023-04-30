@@ -145,8 +145,9 @@ const cartSlice = createSlice({
         state.isSuccess = false;
         state.message = action.payload;
       })
-      .addCase(createOrder.fulfilled, (state) => {
+      .addCase(createOrder.fulfilled, (state, action) => {
         state.cart = { ...state.cart, cartTotal: 0, products: [] };
+        state.orders = [...state.orders, action.payload];
       })
       .addCase(getOrders.pending, (state, action) => {
         state.isLoading = true;

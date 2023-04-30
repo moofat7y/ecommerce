@@ -41,3 +41,10 @@ export const notifyError = (message) => {
     theme: "light",
   });
 };
+
+export const sorts = [
+  { label: "الكل", value: "all" },
+  { label: "من الاعلي سعرا للاقل", value: "sort=-price" },
+  { label: "من الاقل سعرا للاعلي", value: "sort=price" },
+  { label: "الاعلي مبيعا", value: "sort=-sold" },
+];

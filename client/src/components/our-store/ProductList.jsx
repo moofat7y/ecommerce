@@ -9,7 +9,7 @@ const ProductList = () => {
     return <ProdItem key={prod?._id} prod={prod} />;
   });
   return (
-    <div className="products px-2 mt-3 row">
+    <div className="products px-2 row">
       {!isLoading ? (
         prod_list
       ) : (

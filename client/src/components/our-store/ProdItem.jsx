@@ -37,7 +37,7 @@ const ProdItem = ({ prod, extraClass }) => {
   return (
     <div
       className={` px-1 mb-2  ${
-        extraClass ? extraClass : "col-12 col-sm-6 col-lg-4 col-xl-3 "
+        extraClass ? extraClass : "col-6 col-sm-6 col-lg-4 col-xl-3 "
       }`}
     >
       <div className="card h-100 bg-light shadow border-0 position-relative">

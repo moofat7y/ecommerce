@@ -10891,6 +10891,10 @@ html[dir=rtl] .password-switch {
   right: unset !important;
   transform: translate(50%, -50%) !important;
 }
+html[dir=rtl] .dropdown-toggle::after {
+  margin-right: 0.255em !important;
+  margin-left: 0 !important;
+}
 
 body {
   font-family: "Lato", sans-serif;
@@ -11165,6 +11169,47 @@ input[type=number] {
     transform: translate(100%, 100%);
   }
 }
+.mobile-filters {
+  overflow-x: scroll;
+}
+.mobile-filters > div {
+  width: -moz-max-content;
+  width: max-content;
+}
+.mobile-filters::-webkit-scrollbar {
+  height: 2px;
+}
+.mobile-filters::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background-color: var(--bs-white);
+}
+.mobile-filters::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #003e29;
+}
+
+.custom-modal .custom-modal-body {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+.custom-modal .custom-modal-body::-webkit-scrollbar {
+  width: 1px;
+}
+.custom-modal .custom-modal-body::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background-color: var(--bs-white);
+}
+.custom-modal .custom-modal-body::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #003e29;
+}
+.custom-modal .custom-modal-body section {
+  transition: 0.8s;
+}
+.custom-modal .custom-modal-body section.glow {
+  background-color: rgb(229, 229, 229);
+}
+
 .products .card.position-relative .icon {
   right: 10px;
   top: 10px;
@@ -11181,8 +11226,8 @@ input[type=number] {
 
 .card:not(.loading) .card-title,
 .card:not(.loading) .card-text,
-.orders-wrapper-1 .card-title,
-.orders-wrapper-1 .card-text {
+.orders-tracker-wrapper-1 .card-title,
+.orders-tracker-wrapper-1 .card-text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -11210,30 +11255,6 @@ input[type=number] {
   .order-confirm .wrraper {
     min-width: 320px;
     padding: 50px 30px 70px;
-  }
-}
-.stuck-top-13 {
-  position: sticky;
-  top: 13px;
-}
-
-.z-index-10 {
-  z-index: 10;
-}
-
-@media (max-width: 767px) {
-  .off-canvas {
-    min-width: 270px;
-    overflow: hidden;
-  }
-  .off-canvas .off-canvas-body {
-    transition: 0.2s;
-    opacity: 1;
-    transform-origin: right;
-  }
-  .off-canvas .off-canvas-body.cu-collapse {
-    transform: translateX(100%);
-    opacity: 0;
   }
 }
 .orders-tracker-wrapper-1 table {
