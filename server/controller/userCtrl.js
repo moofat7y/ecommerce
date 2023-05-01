@@ -176,7 +176,8 @@ exports.updateProdQuantityInCart = async (req, res, next) => {
       cart.cartTotal = cart.cartTotal - deleteProdTotalprice;
       cart.products = cart.products.map((prod) =>
         prod.product.toString() === prodId &&
-        prod.color.toLowerCase() === color.toLowerCase()
+        prod.color.toLowerCase() === color.toLowerCase() &&
+        prod.size.toLowerCase() === size.toLowerCase()
           ? { ...prod, quantity: quantity }
           : prod
       );
