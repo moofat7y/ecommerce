@@ -61,12 +61,15 @@ const ProdItem = ({ prod, extraClass }) => {
           <Star stars={prod?.totalrating} reviews={prod?.ratings} />
           <span className="lh-sm">{prod?.price}جنيه </span>
           <div
-            style={{ maxHeight: "20px" }}
-            className="d-flex align-items-center justify-content-between"
+            // style={{ maxHeight: "20px" }}
+            className="d-flex  align-items-center justify-content-between"
           >
             {prod?.colors ? (
-              <ul className="p-0 d-flex gap-1 mb-0 colors">
+              <ul className="p-0 d-flex gap-1 mb-0 colors align-items-center">
                 {prod.colors.map((color, index) => {
+                  if (index > 1) {
+                    return;
+                  }
                   return (
                     <li
                       onClick={() => setProdColor(color)}
@@ -83,6 +86,9 @@ const ProdItem = ({ prod, extraClass }) => {
                     ></li>
                   );
                 })}
+                {prod?.colors?.length > 2 ? (
+                  <span className="mb-0">+{prod.colors.length - 2}</span>
+                ) : null}
               </ul>
             ) : null}
 
