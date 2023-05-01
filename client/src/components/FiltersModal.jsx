@@ -29,7 +29,11 @@ const FiltersModal = ({ children, closeModal, section }) => {
           handleBgClick(e);
         }}
         className="position-fixed w-100 h-100 top-0 start-0 bottom--"
-        style={{ backgroundColor: "#0000004a", zIndex: 10000 }}
+        style={{
+          backgroundColor: "#0000004a",
+          zIndex: 10000,
+          overscrollBehavior: "contain",
+        }}
       >
         <div
           ref={modalRef}

@@ -38,6 +38,8 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
       };
     });
   };
+
+  // console.log(sortBy.sort);
   return (
     <div
       className="px-0 d-md-none"
@@ -100,7 +102,10 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
                       })
                     }
                     className={`nav-item btn btn-light ${
-                      sortBy.sort === sort.value ? "active disabled" : ""
+                      sortBy.sort === sort.value ||
+                      (!sortBy.sort && sort.value === "all")
+                        ? "active disabled"
+                        : ""
                     }`}
                   >
                     {sort.label}
