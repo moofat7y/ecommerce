@@ -44,14 +44,26 @@ const Account = () => {
         },
       ],
     },
+    {
+      label: "حذف الحساب",
+      data: "deleteaccount",
+      text: "ادخل كلمة المرور الخاصه بك لحذف حسابك",
+      inputs: [
+        {
+          label: "كلمة المرور الحاليه",
+          data: "password",
+          type: "password",
+        },
+      ],
+    },
   ];
 
   const dataLabel = data.map((label, index) => {
     return (
       <div
         key={label.data}
-        className={`d-flex px-3 py-3 justify-content-between align-items-center w-100 ${
-          index + 1 === data.length ? null : "border-bottom"
+        className={`d-flex px-3 py-3 justify-content-between align-items-center w-100  ${
+          index + 1 === data.length ? "" : "border-bottom"
         }`}
       >
         <div>
@@ -63,13 +75,17 @@ const Account = () => {
         <Link
           to="/my-account/edit"
           state={{ ...label, userData: user?.[label.data] }}
-          className="btn btn-sm btn-light shadow-sm px-4"
+          className={`btn btn-sm ${
+            label.data === "deleteaccount" ? "btn-danger" : "btn-light"
+          } shadow-sm px-4`}
         >
-          تعديل
+          {label.data === "deleteaccount" ? "حذف" : "تعديل"}
         </Link>
       </div>
     );
   });
+
+  const deleteUserAccount = { data: "password", inputs: [{}] };
   return (
     <>
       <header className="bg-white d-flex justify-content-center py-4">
@@ -87,6 +103,21 @@ const Account = () => {
               className="w-50 border border-1 rounded-3 py-1"
             >
               {dataLabel}
+              {/* <div className="d-flex px-3 py-3 justify-content-between align-items-center w-100 ">
+                <div>
+                  <p className="mb-0 fw-semibold">مسح الحساب</p>
+                   <p className="mb-0 fs-7">
+                    {label.data === "password" ? "*******" : user?.[label.data]}
+                  </p> 
+                </div>
+                <Link
+                  to="/my-account/edit"
+                  state={{ ...data[4], userData: user?.password }}
+                  className="btn btn-sm btn-danger shadow-sm px-4"
+                >
+                  حذف
+                </Link>
+              </div> */}
             </div>
           </div>
         </div>

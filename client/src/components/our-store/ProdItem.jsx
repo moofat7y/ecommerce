@@ -51,7 +51,7 @@ const ProdItem = ({ prod, extraClass }) => {
           />
         </div>
 
-        <div className="card-body">
+        <div className="card-body px-1 px-md-3">
           <h5 className="card-title">
             <Link to={`/ourstore/${prod?._id}`} className="nav-link">
               {prod?.title}
@@ -61,7 +61,7 @@ const ProdItem = ({ prod, extraClass }) => {
           <Star stars={prod?.totalrating} reviews={prod?.ratings} />
           <span className="lh-sm">{prod?.price}جنيه </span>
           <div
-            // style={{ maxHeight: "20px" }}
+            style={{ maxHeight: "20px" }}
             className="d-flex  align-items-center justify-content-between"
           >
             {prod?.colors ? (
@@ -87,7 +87,7 @@ const ProdItem = ({ prod, extraClass }) => {
                   );
                 })}
                 {prod?.colors?.length > 2 ? (
-                  <span className="mb-0">+{prod.colors.length - 2}</span>
+                  <span className="mb-0 lh-1">+{prod.colors.length - 2}</span>
                 ) : null}
               </ul>
             ) : null}

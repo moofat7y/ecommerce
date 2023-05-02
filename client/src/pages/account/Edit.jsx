@@ -7,7 +7,7 @@ import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import api from "../../utils/api";
 import { notifyError, notifySuccess } from "../../utils/helpers";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../features/auth/authSlice";
+import { deletUser, updateUser } from "../../features/auth/authSlice";
 const Edit = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
@@ -32,18 +32,18 @@ const Edit = () => {
     setIsLoading(true);
     if (state.data === "password") {
       try {
-        const response = await api.patch("user/password", data);
+        const response = await api.patch("user/password", { data, navigate });
         setIsLoading(false);
         notifySuccess(response.data.message);
-        navigate("/");
       } catch (error) {
         setIsLoading(false);
         notifyError(error.response.data.message);
       }
     } else {
-      await dispatch(updateUser({ data }));
+      state.data === "deleteaccount"
+        ? await dispatch(deletUser({ data, navigate }))
+        : await dispatch(updateUser({ data, navigate }));
       setIsLoading(false);
-      navigate("/");
     }
   };
 
@@ -175,8 +175,12 @@ const Edit = () => {
             ) : null}
             <LoadingBtn
               loading={isLoading}
-              label="تعديل"
-              bgcolor="btn-outline-primary"
+              label={state.data === "deleteaccount" ? "حذف" : "تعديل"}
+              bgcolor={`${
+                state.data === "deleteaccount"
+                  ? "btn-outline-danger"
+                  : "btn-outline-primary"
+              } `}
               extraClass="w-100 mt-3"
             />
           </form>

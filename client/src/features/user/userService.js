@@ -36,6 +36,11 @@ const getOrders = async () => {
   return response.data;
 };
 
+const deleteUser = async (data) => {
+  const response = await api.post("/user/delete-user", data);
+  return response.data;
+};
+
 const userService = {
   getCart,
   addToCart,
@@ -43,6 +48,7 @@ const userService = {
   createOrder,
   getOrders,
   updateUser,
+  deleteUser,
 };
 
 export default userService;

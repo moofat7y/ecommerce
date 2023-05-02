@@ -38,7 +38,6 @@ export const logout = createAsyncThunk("/auth/logout", async (_, thunkAPI) => {
   try {
     const res = await authService.logout();
     window.localStorage.removeItem("token");
-
     thunkAPI.dispatch(resetCart());
     thunkAPI.dispatch(resetWishlist());
     return res;
@@ -60,10 +59,11 @@ export const getStatus = createAsyncThunk("/auth/status", async (thunkAPI) => {
 });
 
 export const updateUser = createAsyncThunk(
-  "/user",
-  async ({ data }, thunkAPI) => {
+  "/user/update",
+  async ({ data, navigate }, thunkAPI) => {
     try {
       const res = await userService.updateUser(data);
+      navigate("/");
       return res;
     } catch (error) {
       notifyError(error?.response?.data?.message);
@@ -71,6 +71,24 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const deletUser = createAsyncThunk(
+  "/user/delete",
+  async ({ data, navigate }, thunkAPI) => {
+    try {
+      const res = await userService.deleteUser(data);
+      window.localStorage.removeItem("token");
+      thunkAPI.dispatch(resetCart());
+      thunkAPI.dispatch(resetWishlist());
+      navigate("/");
+      return res;
+    } catch (error) {
+      notifyError(error?.response?.data?.message);
+      return thunkAPI.rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -147,6 +165,10 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+      .addCase(deletUser.fulfilled, (state) => {
+        state.user = null;
+        state.token = null;
       });
   },
 });
