@@ -77,7 +77,7 @@ router.put(
 router.post("/create-checkout-session", isAuth, userCtrl.createCheckoutSession);
 
 // DELETE user account by owner
-router.delete("/delete-user", isAuth, userCtrl.deleteUser);
+router.post("/delete-user", isAuth, userCtrl.deleteUser);
 // DELETE user account by id by admin
 router.delete(
   "/delete-byadmin/:userId",

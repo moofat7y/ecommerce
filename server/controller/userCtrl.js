@@ -407,12 +407,17 @@ exports.deleteUser = async (req, res, next) => {
     const user = await User.findById(req.user._id);
     const isPassCorrect = await user.isPasswordMatch(password);
     if (!isPassCorrect) {
-      const error = new Error("You entered a wrong password, Please try again");
+      const error = new Error("كلمة المرور التي ادخلتها غير صحيحه");
       error.statusCode = 422;
       throw error;
     }
 
     await user.delete();
+    await Cart.findOneAndDelete({ user: user._id });
+    await Product.updateMany(
+      {},
+      { $pull: { ratings: { postedBy: user._id } } }
+    );
     res.clearCookie("refreshToken", {
       secure: true,
       httpOnly: true,
