@@ -9,10 +9,12 @@ const LayOut = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchUserData = async () => {
-      await dispatch(getStatus());
-      dispatch(getWishlist());
-      dispatch(getCart());
-      dispatch(getOrders());
+      const res = await dispatch(getStatus());
+      if (res.meta.requestStatus === "fulfilled") {
+        dispatch(getWishlist());
+        dispatch(getCart());
+        dispatch(getOrders());
+      }
     };
 
     if (token) {
