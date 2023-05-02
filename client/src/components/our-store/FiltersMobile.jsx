@@ -92,7 +92,7 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
               className="px-0 d-flex flex-wrap gap-2"
               style={{ listStyle: "none" }}
             >
-              {sorts.map((sort) => {
+              {sorts?.map((sort) => {
                 return (
                   <li
                     key={sort.label}
@@ -133,7 +133,7 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
               >
                 الكل
               </li>
-              {categories.map((cat) => {
+              {categories?.map((cat) => {
                 return (
                   <li
                     key={cat.title}
@@ -175,7 +175,7 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
               >
                 الكل
               </li>
-              {brands.map((brand) => {
+              {brands?.map((brand) => {
                 return (
                   <li
                     key={brand.title}

@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://e-commerce-36sb.onrender.com";
+const baseUrl = "https://e-commerce-36sb.onrender.com/api/";
 
 const api = axios.create({ baseURL: baseUrl, withCredentials: true });
 api.interceptors.request.use(
