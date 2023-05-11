@@ -286,7 +286,7 @@ exports.logOut = async (req, res, next) => {
   try {
     if (!refreshToken) {
       const error = new Error("No refresh token in cookies");
-      error.statusCode = 404;
+      error.statusCode = 417;
       throw error;
     }
     const user = await User.findOne({ refreshToken });
@@ -472,7 +472,7 @@ exports.handleRefreshToken = async (req, res, next) => {
   try {
     if (!refreshToken) {
       const error = new Error("No Refresh Token In Cookies");
-      error.statusCode = 404;
+      error.statusCode = 417;
       throw error;
     }
     const user = await User.findOne({ refreshToken });

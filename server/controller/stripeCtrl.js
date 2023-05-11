@@ -46,10 +46,17 @@ exports.createCheckoutSession = async (req, res, next) => {
       customer: customer.id,
       line_items,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/`,
+      success_url: `${process.env.CLIENT_URL}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
 
+    const testsession = await stripe.checkout.sessions.retrieve(
+      "cs_test_a1VuhzT0pd66MJ2lRTaRrbs02UwL47cSDmlNz3y1Q4vepPiwsbHY6KzlYf",
+      {
+        expand: ["line_items"],
+      }
+    );
+    console.log(testsession);
     res.json({ url: session.url });
   } catch (error) {
     throw error;
