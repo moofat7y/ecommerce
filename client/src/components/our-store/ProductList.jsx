@@ -17,7 +17,7 @@ const ProductList = () => {
         className="d-flex flex-column align-items-center justify-content-center"
         style={{ height: "70vh" }}
       >
-        <p className="mb-0 fs-5">لا يوجد منتجات</p>
+        <p className="mb-0 fs-5 mt-3">لا يوجد منتجات</p>
         <Lottie animationData={noProducts} />
       </div>
     );

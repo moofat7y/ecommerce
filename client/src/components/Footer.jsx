@@ -66,10 +66,13 @@ const Footer = () => {
                 <span className="fs-7">123 Main Street, Anytown, CA 12345</span>
               </li>
               <li className=" text-capitalize">
-                <Link className="nav-link d-flex align-items-center text-white-50">
+                <a
+                  href="tel:201028401545"
+                  className="nav-link d-flex align-items-center text-white-50"
+                >
                   <BsFillTelephoneFill className="ms-3 text-white fs-6" />
-                  <span className="fs-7">+20 1005623453</span>
-                </Link>
+                  <span className="fs-7">+201028401545</span>
+                </a>
               </li>
               <li className=" text-capitalize">
                 <Link className="nav-link d-flex align-items-center text-white-50">
@@ -81,15 +84,27 @@ const Footer = () => {
           </div>
           <hr className="text-muted my-4" />
           <div className="w-fit-content d-flex align-items-center gap-3 mx-auto">
-            <Link className="nav-link fs-5 text-white">
+            <a
+              href="https://web.facebook.com/MEDODODO1000?mibextid=ZbWKwL&_rdc=1&_rdr"
+              target="_blank"
+              className="nav-link fs-5 text-white"
+            >
               <FaFacebookF />
-            </Link>
-            <Link className="nav-link fs-5 text-white">
+            </a>
+            <a
+              href="https://api.whatsapp.com/send?phone=+201028401545&text=hello"
+              target="_blank"
+              className="nav-link fs-5 text-white"
+            >
               <BsWhatsapp />
-            </Link>
-            <Link className="nav-link fs-5 text-white">
+            </a>
+            <a
+              href="https://www.instagram.com/mamdouhgonem/?igshid=NTc4MTIwNjQ2YQ=="
+              target="_blank"
+              className="nav-link fs-5 text-white"
+            >
               <BsInstagram />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

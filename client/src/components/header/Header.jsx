@@ -22,7 +22,7 @@ const Header = () => {
             className="phone text-white nav-link d-flex align-items-center"
           >
             <BsTelephone className="mx-2" />
-            +201210192476
+            +201028401545
           </a>
 
           <span className="mb-0">Shop</span>

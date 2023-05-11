@@ -68,7 +68,7 @@ const MainSection = () => {
           {product.tag ? (
             <span className="tags">
               <span className="fw-bold me-2">Tags : </span>
-              <span className="text-muted">watch headphone handfree</span>
+              <span className="text-muted">{product.tag}</span>
             </span>
           ) : null}
           <span className="availability">
