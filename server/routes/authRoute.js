@@ -9,11 +9,9 @@ router.put(
   [
     body("firstname", "firstname must be at least 3 chracter length")
       .trim()
-      .isAlpha()
       .isLength({ min: 3, max: 10 }),
     body("lastname", "lastname must be at least 3 chracter length")
       .trim()
-      .isAlpha()
       .isLength({ min: 3, max: 10 }),
 
     body("mobile")
