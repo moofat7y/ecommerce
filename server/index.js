@@ -32,6 +32,7 @@ const corsOptions = {
     "http://localhost:5173",
     "http://localhost:5174",
     "https://ecommerce-moofat7y.vercel.app",
+    "https://ecommerce-admin-moofat7y.vercel.app",
   ],
   credentials: true,
 };
