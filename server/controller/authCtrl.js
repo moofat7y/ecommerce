@@ -30,6 +30,8 @@ exports.signUp = async (req, res, next) => {
       // expireAt: Date.now() + 9000000,
     });
 
+    await Cart.create({ user: user._id });
+
     // generate token for confirming email
     const token = generateConfirmEmail(user._id, user.email);
     const confirmationMSG = `
@@ -98,7 +100,6 @@ exports.confirmEmail = async (req, res, next) => {
     user.emailconfirmed = true;
     // user.expireAt = undefined;
     await user.save();
-    await Cart.create({ user: user._id });
 
     res.status(200).json({ message: "لقد تم تاكيد حسابك بنجاح" });
   } catch (error) {
