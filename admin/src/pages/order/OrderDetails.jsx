@@ -147,8 +147,10 @@ const OrderDetails = () => {
                     </div>
                     <div className="d-flex flex-column">
                       <p className="mb-0">{prod?.product?.title}</p>
-
-                      {prod?.color ? <p className="">{prod?.color}</p> : null}
+                      {prod?.color ? (
+                        <p className="mb-0">{prod?.color}</p>
+                      ) : null}
+                      {prod?.size ? <p className="mb-0">{prod?.size}</p> : null}
                     </div>
                     <p className="mb-0 ms-auto">{prod?.product?.price} EGP</p>
                     <p className="mb-0 mx-4">{prod?.quantity}</p>
