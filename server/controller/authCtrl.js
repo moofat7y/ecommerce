@@ -185,11 +185,11 @@ exports.adminSignIn = async (req, res, next) => {
       throw error;
     }
 
-    if (!user.emailconfirmed) {
-      const error = new Error("Please confirm your email first");
-      error.statusCode = 422;
-      throw error;
-    }
+    // if (!user.emailconfirmed) {
+    //   const error = new Error("Please confirm your email first");
+    //   error.statusCode = 422;
+    //   throw error;
+    // }
 
     if (user.role !== "admin") {
       const error = new Error("You are not authorized");
