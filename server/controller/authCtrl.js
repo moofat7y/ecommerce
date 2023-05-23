@@ -121,11 +121,11 @@ exports.signIn = async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
-    if (!user.emailconfirmed) {
-      const error = new Error("يجب تاكيد حسابك اولا");
-      error.statusCode = 422;
-      throw error;
-    }
+    // if (!user.emailconfirmed) {
+    //   const error = new Error("يجب تاكيد حسابك اولا");
+    //   error.statusCode = 422;
+    //   throw error;
+    // }
     const isPassCorrect = await user.isPasswordMatch(password);
     if (!isPassCorrect) {
       const error = new Error("كلمة المرور خاطئه");
