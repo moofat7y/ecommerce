@@ -27,7 +27,7 @@ exports.signUp = async (req, res, next) => {
       email,
       mobile,
       password,
-      expireAt: Date.now() + 9000000,
+      // expireAt: Date.now() + 9000000,
     });
 
     // generate token for confirming email
@@ -96,7 +96,7 @@ exports.confirmEmail = async (req, res, next) => {
       throw error;
     }
     user.emailconfirmed = true;
-    user.expireAt = undefined;
+    // user.expireAt = undefined;
     await user.save();
     await Cart.create({ user: user._id });
 

@@ -61,11 +61,11 @@ var userSchema = new mongoose.Schema(
     passwordChangedAt: Date,
     passwordResetToken: String,
     passowrdResetExpire: Date,
-    expireAt: {
-      type: Date,
-      expires: "15m",
-      default: null,
-    },
+    // expireAt: {
+    //   type: Date,
+    //   expires: "15m",
+    //   default: null,
+    // },
   },
   { timestamps: true }
 );
