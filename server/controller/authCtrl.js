@@ -452,7 +452,7 @@ exports.handleRefreshTokenUser = async (req, res, next) => {
         sameSite: "None",
       });
       const error = new Error("There is no user with this refresh token in db");
-      error.statusCode = 404;
+      error.statusCode = 417;
       throw error;
     }
 
