@@ -205,7 +205,7 @@ const AddProduct = () => {
                   <Select
                     placeholder="Select Size"
                     className={`w-100  `}
-                    mode="multiple"
+                    mode="tags"
                     {...field}
                     defaultValue={field.defaultValue}
                   >
