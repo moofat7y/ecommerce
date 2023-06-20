@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { BsDot } from "react-icons/all";
-import Section from "../../components/Section";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import MainSection from "../../components/singleProduct/MainSection";
@@ -31,7 +29,7 @@ const SingleProduct = () => {
           <MainSection />
           <section className="single-product-wrapper-2 py-2">
             <div className="container">
-              <div className="row flex-column gap-3">
+              <div className="row m-0 flex-column gap-3">
                 <h2 className="fw-bolder fs-5">معلومات المنتج</h2>
                 <p className="p-3 bg-white shadow-sm">{product.description}</p>
               </div>
@@ -39,7 +37,7 @@ const SingleProduct = () => {
           </section>
           <section className="single-product-wrapper-3 py-2">
             <div className="container">
-              <div className="row flex-column gap-3">
+              <div className="row m-0 flex-column gap-3">
                 <h2 className="fw-bolder fs-5">مراجعات المستخدمين</h2>
                 <div className="review-box bg-white shadow-sm p-3 d-flex flex-column gap-2">
                   <CustomerReview />

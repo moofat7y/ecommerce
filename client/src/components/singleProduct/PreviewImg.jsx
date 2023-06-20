@@ -9,7 +9,7 @@ const PreviewImg = () => {
     setPreviewImgSrc(e.currentTarget.src);
   };
   return (
-    <div className="col-12 position-relative col-md-6 col-xl-4 px-0  d-flex gap-2 flex-column">
+    <div className="col-12 position-relative col-md-6 col-xl-4 d-flex gap-2 flex-column">
       <div className="preview-img perimeter">
         <div className="image">
           <img
@@ -23,7 +23,7 @@ const PreviewImg = () => {
       </div>
       <div
         style={{ top: "10px", right: "10px" }}
-        className="images position-absolute d-flex flex-column gap-4"
+        className="images position-absolute d-flex flex-column gap-2"
       >
         {product.images?.map((img) => {
           return (

@@ -38,7 +38,7 @@ const CustomerReview = () => {
     reset();
   };
   return (
-    <div className="p-3 bg-white  d-flex flex-column gap-1 ">
+    <div className="py-3 bg-white  d-flex flex-column gap-1 ">
       <ul className="d-flex flex-wrap gap-2 px-0 justify-content-end">
         {Array.from({ length: 5 }, (ele, index) => {
           const stars = Array.from({ length: index + 1 }, (star, i) => {
@@ -64,7 +64,7 @@ const CustomerReview = () => {
           <textarea
             {...register("comment")}
             type="text"
-            className={`review-comment w-100 form-control p-2 ${
+            className={`review-comment w-100 form-control py-2 ${
               errors.comment ? "is-invalid" : null
             }`}
             placeholder="اكتب تعليقك"

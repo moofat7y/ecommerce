@@ -30,7 +30,7 @@ const MainSection = () => {
     <Section className="single-product-wrapper-1 bg-light">
       <div className="row">
         <PreviewImg />
-        <div className="col-12 col-md-6 px-0 pe-1 py-2 d-flex flex-column gap-3">
+        <div className="col-12 col-md-6  py-2 d-flex flex-column gap-3">
           <h1 className="fs-6 fw-bolder text-dark">{product.title}</h1>
           <Star
             stars={product?.totalrating || 0}
