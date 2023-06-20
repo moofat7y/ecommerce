@@ -92,7 +92,6 @@ const OrderConfirm = () => {
             <div className="input-group mb-3">
               <input
                 {...register("email", {
-                  required: "يجب ادخال بريد الكتروني",
                   pattern: {
                     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                     message: "الرجاء استخدام بريد إلكتروني صالح",
