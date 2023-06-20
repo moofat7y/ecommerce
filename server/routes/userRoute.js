@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { body } = require("express-validator");
 const userCtrl = require("../controller/userCtrl");
 const Product = require("../models/productModel");
-const { isAdmin, isAuth } = require("../middlewares/isAuth");
+const { isAdmin, isAuth, hypred } = require("../middlewares/isAuth");
 const { uploadPhoto, userImgResize } = require("../middlewares/uploadImages");
 
 // GET all users
@@ -10,7 +10,7 @@ router.get("/", isAuth, isAdmin, userCtrl.getAllUsers);
 // GET user wishlist
 router.get("/wishlist", isAuth, userCtrl.geWishlist);
 // GET user cart
-router.get("/cart", isAuth, userCtrl.getUserCart);
+router.post("/cart", userCtrl.getUserCart);
 // GET all user orders
 router.get("/orders", isAuth, userCtrl.getOrders);
 // GET single user by id
@@ -68,8 +68,8 @@ router.put(
 // Create order cash on delivery
 router.put(
   "/create-order",
+  hypred,
   [body("shipingaddress", "Please enter your address").exists().notEmpty()],
-  isAuth,
   userCtrl.createOrder
 );
 

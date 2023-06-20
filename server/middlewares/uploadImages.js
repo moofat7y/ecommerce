@@ -34,7 +34,7 @@ const productImgResize = async (req, res, next) => {
       await sharp(file.path)
         .resize(300, 300, {
           fit: "contain",
-          background: "white",
+          background: { r: 248, g: 249, b: 250 },
         })
         .toFormat("jpeg")
         .jpeg({ quality: 90 })

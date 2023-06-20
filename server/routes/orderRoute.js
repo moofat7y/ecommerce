@@ -9,6 +9,7 @@ router.get("/dashboard", orderCtrl.getDashboardDetails);
 // GET count of orders in each month
 router.get("/month", orderCtrl.getOrdersByMonth);
 // GET order by id
+router.get("/test", orderCtrl.test);
 router.get("/:orderId", isAuth, isAdmin, orderCtrl.getOrderById);
 // Update order status
 router.patch(

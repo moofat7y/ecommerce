@@ -39,7 +39,7 @@ var userSchema = new mongoose.Schema(
       secure_url: {
         type: String,
         default:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/120px-User-avatar.svg.png?20201213175635",
+          "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
       },
       public_id: null,
     },

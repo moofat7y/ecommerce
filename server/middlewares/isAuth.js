@@ -54,4 +54,41 @@ const isAdmin = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { isAuth, isAdmin };
+
+const hypred = async (req, res, next) => {
+  const header = req.headers?.authorization;
+  try {
+    if (!header || !header?.startsWith("Bearer")) {
+      const error = new Error("You are not authonticated");
+      error.statusCode = 422;
+      throw error;
+    }
+    const headerToken = header.split(" ")[1];
+    const decodedToken = jwt.verify(
+      headerToken,
+      process.env.SECRET_TOKEN,
+      {},
+      (err, decodedToken) => {
+        if (err) {
+          const error = new Error(err.message);
+          error.stack = err.stack;
+          error.statusCode = 401;
+          throw error;
+        }
+        return decodedToken;
+      }
+    );
+    const user = await User.findById(decodedToken.id);
+    if (!user) {
+      const error = new Error("Your account may be deleted");
+      error.statusCode = 417;
+      throw error;
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    next();
+  }
+};
+
+module.exports = { isAuth, isAdmin, hypred };

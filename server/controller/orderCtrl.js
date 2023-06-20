@@ -316,3 +316,50 @@ exports.deleteOrder = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.test = async (req, res, next) => {
+  const startOfYear = new Date(new Date().getFullYear(), 0, 1); // Start of the year
+  const now = new Date(); // Current time
+  const currentMonth = now.getMonth() + 1; // Current month
+
+  const orders = await Order.aggregate([
+    {
+      $match: {
+        createdAt: {
+          $gte: startOfYear,
+          $lt: now,
+        },
+      },
+    },
+    {
+      $group: {
+        _id: {
+          month: { $month: "$createdAt" },
+          year: { $year: "$createdAt" },
+        },
+        data: { $push: "$$ROOT" }, // Push all the documents to an array
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        year: "$_id.year",
+        month: "$_id.month",
+        data: 1,
+      },
+    },
+    {
+      $group: {
+        _id: { year: "$year" },
+        data: {
+          $push: {
+            month: "$month",
+            data: "$data",
+          },
+        },
+      },
+    },
+  ]);
+
+  res.status(200).json(orders);
+};

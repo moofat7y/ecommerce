@@ -5,6 +5,7 @@ const Product = require("../models/productModel");
 const Copon = require("../models/coponModel");
 const Order = require("../models/orderModel");
 const uniqid = require("uniqid");
+const { default: mongoose } = require("mongoose");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 // GET all users
@@ -216,10 +217,16 @@ exports.clearUserCart = async (req, res, next) => {
 
 // Get user cart
 exports.getUserCart = async (req, res, next) => {
-  const { _id } = req.user;
+  const { cart } = req.body;
   try {
-    const cart = await Cart.findOne({ user: _id }).populate("products.product");
-    res.status(200).json(cart);
+    let newCart = cart;
+
+    newCart.products = await Promise.all(
+      newCart.products.map(async (prod) => {
+        return { ...prod, product: await Product.findById(prod.product._id) };
+      })
+    );
+    res.status(200).json(newCart);
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;
@@ -273,16 +280,30 @@ exports.applyCopon = async (req, res, next) => {
 
 // Create order cash on delivery
 exports.createOrder = async (req, res, next) => {
-  const { shipingaddress, coponApplied } = req.body;
-  const { _id } = req.user;
+  const { shipingaddress, coponApplied, cart } = req.body;
+  const _id = req.user?._id;
   const errors = validationResult(req);
+
   try {
     if (!errors.isEmpty()) {
       const error = new Error(errors.array()[0].msg);
       error.statusCode = 422;
       throw error;
     }
-    const cart = await Cart.findOne({ user: _id });
+
+    const arrayOfPrices = await Promise.all(
+      cart.products.map(async (prod) => {
+        return prod.quantity * (await Product.findById(prod.product._id)).price;
+      })
+    );
+
+    const finalAmount = arrayOfPrices.reduce((a, b) => a + b);
+    let orderby = null;
+    if (_id) {
+      orderby = _id;
+    } else {
+      orderby = undefined;
+    }
     // check if cart is empty
     if (!cart.products.length > 0) {
       const error = new Error("Cart is empty");
@@ -290,14 +311,15 @@ exports.createOrder = async (req, res, next) => {
       throw error;
     }
 
-    let finalAmount = 0;
-    if (coponApplied && cart.totalAfterDiscount) {
-      finalAmount = cart.totalAfterDiscount;
-    } else {
-      finalAmount = cart.cartTotal;
-    }
+    const pop = cart.products.map((prod) => {
+      return {
+        ...prod,
+        product: mongoose.Types.ObjectId(prod.product._id),
+      };
+    });
+
     let order = await Order.create({
-      products: cart.products,
+      products: pop,
       shipingaddress,
       paymentIntent: {
         id: uniqid(),
@@ -307,15 +329,10 @@ exports.createOrder = async (req, res, next) => {
         created: Date.now(),
         currency: "egp",
       },
-      orderby: _id,
+      orderby,
       expireAt: Date.now() + 8.64e9,
     });
 
-    // clear cart after order
-    await Cart.findOneAndUpdate(
-      { user: _id },
-      { products: [], totalAfterDiscount: 0, cartTotal: 0 }
-    );
     let update = cart.products.map((prod) => {
       return {
         updateOne: {
