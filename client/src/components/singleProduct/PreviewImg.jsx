@@ -9,27 +9,33 @@ const PreviewImg = () => {
     setPreviewImgSrc(e.currentTarget.src);
   };
   return (
-    <div className="col-12 col-md-6 col-xl-4 px-0 ps-1 py-2 d-flex gap-5 flex-column">
+    <div className="col-12 position-relative col-md-6 col-xl-4 px-0  d-flex gap-2 flex-column">
       <div className="preview-img perimeter">
         <div className="image">
           <img
             className="w-100 h-100"
             style={{ objectFit: "contain", maxHeight: "420px" }}
             src={previewImgSrc}
+            loading="lazy"
             alt="product-image"
           />
         </div>
       </div>
-      <div className="images d-flex flex-wrap align-items-center justify-content-between gap-1">
+      <div
+        style={{ top: "10px", right: "10px" }}
+        className="images position-absolute d-flex flex-column gap-4"
+      >
         {product.images?.map((img) => {
           return (
             <img
+              style={{ width: "20%" }}
               key={img.public_id}
               role="button"
               onClick={changePreviewImg}
               src={img?.secure_url}
               alt="..."
-              className="col-5 shadow-sm"
+              loading="lazy"
+              className="ratio ratio-1x1 rounded-3 shadow-sm"
             />
           );
         })}

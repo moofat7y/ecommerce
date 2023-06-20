@@ -28,29 +28,26 @@ const SingleProduct = () => {
         </div>
       ) : (
         <>
-          <header className="bg-white d-flex justify-content-center py-4">
-            <span className="fs-6  text-secondary">
-              <span className="">الرئيسيه</span>
-              <BsDot className="fs-5" />
-              <span>المنتج</span>
-            </span>
-          </header>
           <MainSection />
-          <Section className="single-product-wrapper-2">
-            <div className="row flex-column gap-3">
-              <h2 className="fw-bolder-fs-3">Description</h2>
-              <p className="p-3 bg-white shadow-sm">{product.description}</p>
-            </div>
-          </Section>
-          <Section className="single-product-wrapper-3">
-            <div className="row flex-column gap-3">
-              <h2 className="fw-bolder-fs-3">Review</h2>
-              <div className="review-box bg-white shadow-sm p-3 d-flex flex-column gap-2">
-                <CustomerReview />
-                <ReviewList />
+          <section className="single-product-wrapper-2 py-2">
+            <div className="container">
+              <div className="row flex-column gap-3">
+                <h2 className="fw-bolder fs-5">معلومات المنتج</h2>
+                <p className="p-3 bg-white shadow-sm">{product.description}</p>
               </div>
             </div>
-          </Section>
+          </section>
+          <section className="single-product-wrapper-3 py-2">
+            <div className="container">
+              <div className="row flex-column gap-3">
+                <h2 className="fw-bolder fs-5">مراجعات المستخدمين</h2>
+                <div className="review-box bg-white shadow-sm p-3 d-flex flex-column gap-2">
+                  <CustomerReview />
+                  <ReviewList />
+                </div>
+              </div>
+            </div>
+          </section>
         </>
       )}
     </>

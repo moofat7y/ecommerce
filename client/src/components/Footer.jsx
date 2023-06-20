@@ -8,18 +8,22 @@ import {
   BsWhatsapp,
   BsInstagram,
 } from "react-icons/all";
-
+import Logo from "../assets/logo2.png";
 const Footer = () => {
   return (
     <footer className="py-5 bg-dark">
       <div className="container pb-5">
         <div className="row justify-content-between">
-          <div className="col-12 col-md-6 col-lg-4 p-3">
+          <div className="col-12  col-lg-4 p-3 pt-0">
             <a
-              className="navbar-brand order-2 order-md-1 mx-0 text-white fs-1 fw-bolder mb-3"
+              className="navbar-brand order-2 order-md-1 mx-0 text-white fs-1 fw-bolder d-inline-block mb-3"
               href="#"
             >
-              E-Commerce
+              <img
+                style={{ width: "calc(3rem + 3.5vw)", objectFit: "cover" }}
+                src={Logo}
+                alt=""
+              />
             </a>
             <p className="text-white-50 mb-3 fs-7">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
@@ -27,38 +31,37 @@ const Footer = () => {
               fuga aspernatur beatae delectus pariatur, mollitia atque quis.
               Eaque quam placeat perferendis{" "}
             </p>
-            <div className="w-100 d-flex">
-              <img
-                className="img-fluid"
-                src="images/payments-methods.png"
-                alt="..."
-              />
-            </div>
           </div>
           <div className="col-12 col-md-3 col-lg-3 p-3">
             <h6 className="text-capitalize text-white fw-bolder mb-3">
-              my account
+              روابط سريعة
             </h6>
             <ul className="w-100 d-flex gap-3 flex-column p-0 m-0">
               <li className="text-capitalize">
-                <Link className="nav-link text-white-50 fs-7">my product</Link>
+                <Link to="/" className="nav-link text-white-50 fs-7">
+                  الرئيسيه
+                </Link>
               </li>
               <li className="text-capitalize">
-                <Link className="nav-link text-white-50 fs-7">my order</Link>
+                <Link to="ourstore" className="nav-link text-white-50 fs-7">
+                  المتجر
+                </Link>
               </li>
               <li className="text-capitalize">
-                <Link className="nav-link text-white-50 fs-7">my address</Link>
+                <Link to="contact-us" className="nav-link text-white-50 fs-7">
+                  تواصل معنا
+                </Link>
               </li>
               <li className="text-capitalize">
-                <Link className="nav-link text-white-50 fs-7">
-                  my personal account
+                <Link to="cart" className="nav-link text-white-50 fs-7">
+                  عربة التسوق
                 </Link>
               </li>
             </ul>
           </div>
           <div className="col-12 col-md-6 col-lg-4 p-3">
             <h6 className="text-capitalize text-white fw-bolder mb-3">
-              contact us
+              تواصل معنا
             </h6>
             <ul className="w-100 d-flex gap-3 flex-column p-0 m-0">
               <li className="nav-link d-flex align-items-center text-capitalize text-white-50">

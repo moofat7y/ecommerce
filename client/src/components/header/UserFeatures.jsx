@@ -19,7 +19,7 @@ const UserFeatures = () => {
     }
   };
   return (
-    <div className="d-flex order-2 order-md-3 order-xl-4">
+    <div className="d-flex gap-3 order-2 order-md-3 order-xl-4">
       {user ? (
         <div className="dropdown">
           <div
@@ -28,7 +28,7 @@ const UserFeatures = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <IoPersonOutline className="fs-5 mx-1" />
+            <IoPersonOutline className="fs-5 mx-0" />
             <span className="mb-0 d-none d-md-inline-block">حسابي</span>
           </div>
           <ul className="dropdown-menu text-center px-2 slideIn animate translate-middle-x">
@@ -56,20 +56,14 @@ const UserFeatures = () => {
           </ul>
         </div>
       ) : (
-        <Link
-          to="/auth/signin"
-          className="d-flex align-items-center mx-2 nav-link"
-        >
-          <IoPersonOutline className="fs-5 mx-1" />
+        <Link to="/auth/signin" className="d-flex align-items-center nav-link">
+          <IoPersonOutline className="fs-5" />
           <span className="d-none d-md-inline mb-0 ">تسجيل الدخول</span>
         </Link>
       )}
 
-      <NavLink
-        to="/wishlist"
-        className="d-flex align-items-center mx-2 nav-link"
-      >
-        <AiOutlineHeart className="fs-5 mx-1" />
+      <NavLink to="/wishlist" className="d-flex align-items-center nav-link">
+        <AiOutlineHeart className="fs-5 " />
 
         <span className="d-none d-md-inline mb-0 "> قائمة الرغبات</span>
       </NavLink>

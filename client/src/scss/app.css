@@ -10849,7 +10849,7 @@ textarea.form-control-lg {
 }
 .home .slider .slider-body {
   overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -11264,9 +11264,6 @@ input[type=number] {
   max-width: 80px;
 }
 
-.cart .img-thumbnail {
-  max-width: 70px;
-}
 .cart .table-wrapper {
   overflow-x: auto;
 }

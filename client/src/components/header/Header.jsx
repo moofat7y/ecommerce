@@ -3,15 +3,12 @@ import { BsTelephone } from "react-icons/bs";
 
 import UserFeatures from "./UserFeatures";
 import { Link, NavLink } from "react-router-dom";
-import {
-  AiOutlineAppstore,
-  AiOutlineHome,
-  AiOutlinePhone,
-} from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import SearchBox from "./SearchBox";
 import { GoHome } from "react-icons/go";
 import { BiStoreAlt } from "react-icons/bi";
 
+import Logo from "../../assets/logo.png";
 const Header = () => {
   return (
     <header>
@@ -34,7 +31,11 @@ const Header = () => {
       <nav className="navbar shadow-sm navbar-expand-xl bg-body-tertiary">
         <div className="container d-flex">
           <Link to="/" className="navbar-brand order-1  mx-0">
-            E-Commerce
+            <img
+              style={{ width: "50px", objectFit: "cover" }}
+              src={Logo}
+              alt=""
+            />
           </Link>
           <UserFeatures />
           <SearchBox />

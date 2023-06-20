@@ -1,9 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import userService from "./userService";
-import { notifyError, notifySuccess } from "../../utils/helpers";
+import { notifyError, notifyInfo, notifySuccess } from "../../utils/helpers";
+
+const cart = JSON.parse(window.localStorage.getItem("cart"));
 
 const initialState = {
-  cart: null,
+  cart: cart || { products: [], cartTotal: 0 },
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -11,51 +13,20 @@ const initialState = {
   message: "",
 };
 
-export const getCart = createAsyncThunk("cart/", async (thunkAPI) => {
+export const getCart = createAsyncThunk("cart/", async ({ cart }, thunkAPI) => {
   try {
-    return await userService.getCart();
+    return await userService.getCart(cart);
   } catch (error) {
     return thunkAPI.rejectWithValue(error?.response?.data?.message);
   }
 });
 
-export const addToCart = createAsyncThunk(
-  "cart/add",
-  async ({ prodId, color, size }, thunkAPI) => {
-    try {
-      const res = await userService.addToCart(prodId, color, size);
-      notifySuccess("تمت الاضافه الي عربة التسوق");
-      return res;
-    } catch (error) {
-      notifyError(error?.response?.data?.message);
-      return thunkAPI.rejectWithValue(error?.response?.data?.message);
-    }
-  }
-);
-
-export const updateCartQuantity = createAsyncThunk(
-  "cart/prod-quantity",
-  async ({ prodId, color, size, quantity }, thunkAPI) => {
-    try {
-      const res = await userService.updateCartQuantity(
-        prodId,
-        color,
-        size,
-        quantity
-      );
-      return res;
-    } catch (error) {
-      notifyError(error?.response?.data?.message);
-      return thunkAPI.rejectWithValue(error?.response?.data?.message);
-    }
-  }
-);
-
 export const createOrder = createAsyncThunk(
   "cart/create-order",
-  async ({ data, navigate }, thunkAPI) => {
+  async ({ data, cart, navigate }, thunkAPI) => {
     try {
-      const res = await userService.createOrder(data);
+      const res = await userService.createOrder(data, cart);
+      thunkAPI.dispatch(resetCart());
       notifySuccess("تم تاكيد الطلب بنجاح وسيتم التواصل معك في اقرب وقت");
       navigate("/");
       return res;
@@ -82,11 +53,77 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     resetCart(state) {
-      state.cart = null;
+      window.localStorage.removeItem("cart");
+      state.cart = { products: [], cartTotal: 0 };
       state.isLoading = false;
       state.isError = false;
       state.message = "";
       state.isSuccess = false;
+    },
+    addToCart(state, action) {
+      const newCart = JSON.parse(localStorage.getItem("cart")) || {
+        products: [],
+        cartTotal: 0,
+      };
+
+      const alReadyAdded = newCart.products.findIndex(
+        (prod) =>
+          prod.color === action.payload.color &&
+          prod.size === action.payload.size &&
+          prod.product._id === action.payload.product._id
+      );
+      if (alReadyAdded >= 0) {
+        const newProduct = {
+          ...newCart.products[alReadyAdded],
+          quantity: newCart.products[alReadyAdded].quantity + 1,
+        };
+        newCart.products[alReadyAdded] = newProduct;
+        notifyInfo("تم تحديث الكميه");
+      } else {
+        const newProduct = {
+          product: action.payload.product,
+          quantity: 1,
+          color: action.payload.color,
+          size: action.payload.size,
+          price: action.payload.product.price,
+        };
+        newCart.products.push(newProduct);
+        notifySuccess("تم اضافه المنتج الي عربة التسوق");
+      }
+      let totalPrice = 0;
+      for (let i = 0; i < newCart.products.length; i++) {
+        totalPrice =
+          totalPrice + newCart.products[i].price * newCart.products[i].quantity;
+      }
+      newCart.cartTotal = totalPrice;
+      window.localStorage.setItem("cart", JSON.stringify(newCart));
+      state.cart = newCart;
+    },
+    updateCartQuantity(state, action) {
+      let prodIndex = state.cart.products.findIndex(
+        (prod) =>
+          prod.product._id === action.payload.prodId &&
+          prod.color === action.payload.color &&
+          prod.size === action.payload.size
+      );
+      const exsitProd = state.cart.products[prodIndex];
+      state.cart.cartTotal =
+        state.cart.cartTotal -
+        state.cart.products[prodIndex].quantity *
+          state.cart.products[prodIndex].price;
+
+      if (action.payload.quantity > 0) {
+        state.cart.products[prodIndex].quantity = action.payload.quantity;
+      } else if (action.payload.quantity <= 0) {
+        state.cart.products = state.cart.products.filter(
+          (prod) =>
+            prod.product._id !== action.payload.prodId ||
+            prod.color !== action.payload.color ||
+            prod.size !== action.payload.size
+        );
+      }
+      state.cart.cartTotal += exsitProd.price * action.payload.quantity;
+      window.localStorage.setItem("cart", JSON.stringify(state.cart));
     },
   },
   extraReducers: (builder) => {
@@ -104,42 +141,6 @@ const cartSlice = createSlice({
         state.cart = action.payload;
       })
       .addCase(getCart.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.isSuccess = false;
-        state.message = action.payload;
-      })
-      .addCase(addToCart.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
-        state.isSuccess = false;
-        state.message = "";
-      })
-      .addCase(addToCart.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.isSuccess = true;
-        state.cart = action.payload;
-      })
-      .addCase(addToCart.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.isSuccess = false;
-        state.message = action.payload;
-      })
-      .addCase(updateCartQuantity.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
-        state.isSuccess = false;
-        state.message = "";
-      })
-      .addCase(updateCartQuantity.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.isSuccess = true;
-        state.cart = action.payload;
-      })
-      .addCase(updateCartQuantity.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
@@ -168,5 +169,5 @@ const cartSlice = createSlice({
       });
   },
 });
-export const { resetCart } = cartSlice.actions;
+export const { resetCart, addToCart, updateCartQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

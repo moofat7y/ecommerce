@@ -39,7 +39,6 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
     });
   };
 
-  // console.log(sortBy.sort);
   return (
     <div
       className="px-0 d-md-none"
@@ -221,7 +220,7 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
                 </div>
               </div>
               <button type="submit" className="btn btn-primary mt-2">
-                بدأ
+                بحث
               </button>
             </form>
           </section>

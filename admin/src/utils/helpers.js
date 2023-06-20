@@ -48,6 +48,12 @@ export const sizes = [
   { label: "XXXL", value: "XXXL" },
   { label: "4XL", value: "4XL" },
   { label: "5XL", value: "5XL" },
+  { label: "30", value: "30" },
+  { label: "31", value: "31" },
+  { label: "32", value: "32" },
+  { label: "33", value: "33" },
+  { label: "34", value: "34" },
+  { label: "35", value: "35" },
 ];
 
 export const orderStatus = [

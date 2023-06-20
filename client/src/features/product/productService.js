@@ -14,6 +14,13 @@ const getFeaturedProducts = async (query) => {
   return response.data;
 };
 
+const getBestSellerProducts = async (query) => {
+  const response = await api.get(
+    `/product/?quantity[gt]=0&${query ? query : ""}`
+  );
+  return response.data;
+};
+
 const getPopularProducts = async (query) => {
   const response = await api.get(
     `/product/?quantity[gt]=0&${query ? query : ""}`
@@ -35,6 +42,7 @@ const rateProduct = async (data) => {
 const productService = {
   getProducts,
   getFeaturedProducts,
+  getBestSellerProducts,
   getPopularProducts,
   getSingleProduct,
   rateProduct,

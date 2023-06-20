@@ -92,7 +92,6 @@ const SignUp = () => {
                 {...register("lastname", {
                   required: "يجب ادخال الاسم الثاني",
                   minLength: { value: 2, message: "الاسم الثاني غير صالح" },
-                  maxLength: { value: 10, message: "الاسم الثاني غير صالح" },
                 })}
                 type="text"
                 className={`form-control px-3 py-2 rounded-0 ${
@@ -141,7 +140,7 @@ const SignUp = () => {
                   message: "الرجاء رقم هاتف صحيح",
                 },
               })}
-              type="number"
+              type="tel"
               className={`form-control px-3 py-2 rounded-0 ${
                 errors.mobile ? "is-invalid" : ""
               }`}
@@ -160,12 +159,12 @@ const SignUp = () => {
                   pattern: {
                     value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,
                     message:
-                      "يجب ان تتكون كلمة المرور من 6 احرف علي الاقل وتحتوي علي حرف كبير وحرف صغير",
+                      " يجب ان تتكون كلمة المرور من 6 احرف علي الاقل وتحتوي علي حرف كبير وحرف صغير ورقم علي الاقل",
                   },
                   minLength: {
                     value: 6,
                     message:
-                      "يجب ان تتكون كلمة المرور من 6 احرف علي الاقل وتحتوي علي حرف كبير وحرف صغير",
+                      " يجب ان تتكون كلمة المرور من 6 احرف علي الاقل وتحتوي علي حرف كبير وحرف صغير ورقم علي الاقل",
                   },
                 })}
                 type={`${passwordShow ? "text" : "password"}`}

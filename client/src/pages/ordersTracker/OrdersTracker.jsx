@@ -13,19 +13,19 @@ const OrdersTracker = () => {
 
   return (
     <div>
-      <header className="bg-white d-flex justify-content-center py-4">
-        <span className="fs-6  text-secondary">
-          <span className="">الرئيسيه</span>
-          <BsDot className="fs-5" />
-          <span>الطلبات</span>
-        </span>
-      </header>
       <Section className="orders-tracker-wrapper-1">
         {ordersState.length > 0 ? (
           orders
         ) : (
-          <div style={{ height: "80vh" }} className=" w-100">
-            <Lottie className="w-100 h-100" animationData={animation} />
+          <div
+            style={{ height: "100vh" }}
+            className="d-flex align-items-center justify-content-center"
+          >
+            <Lottie
+              style={{ width: "50%", height: "50%" }}
+              className=""
+              animationData={animation}
+            />
           </div>
         )}
       </Section>

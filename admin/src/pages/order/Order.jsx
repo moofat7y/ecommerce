@@ -72,7 +72,8 @@ const Order = () => {
         </div>
       ),
       date: new Date(order.createdAt).toLocaleString(),
-      customer: order.orderby?.firstname + " " + order.orderby?.lastname,
+      customer:
+        order.shipingaddress?.firstname + " " + order.shipingaddress?.lastname,
       paid: order.paymentIntent.status,
       status: (
         <span

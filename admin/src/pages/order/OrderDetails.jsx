@@ -167,43 +167,46 @@ const OrderDetails = () => {
             </div>
 
             <div className="customer w-25">
-              <div className="bg-light mb-3 p-4 rounded-3">
-                <h6 className="mb-3">Customer</h6>
-                <div className="d-flex">
-                  <div className="image me-2">
-                    <img
-                      src={singleOrder?.orderby?.image?.secure_url}
-                      className="img-profile"
-                      alt="img-profile"
-                    />
+              {singleOrder?.orderby ? (
+                <>
+                  <div className="bg-light mb-3 p-4 rounded-3">
+                    <h6 className="mb-3">Customer</h6>
+                    <div className="d-flex">
+                      <div className="image me-2">
+                        <img
+                          src={singleOrder?.orderby?.image?.secure_url}
+                          className="img-profile"
+                          alt="img-profile"
+                        />
+                      </div>
+                      <p className="mb-0">
+                        {singleOrder?.orderby?.firstname}{" "}
+                        {singleOrder?.orderby?.lastname}
+                      </p>
+                    </div>
                   </div>
-                  <p className="mb-0">
-                    {singleOrder?.orderby?.firstname}{" "}
-                    {singleOrder?.orderby?.lastname}
-                  </p>
-                </div>
-              </div>
 
-              <div className="bg-light mb-3 p-4 rounded-3">
-                <h6 className="mb-3">Contact</h6>
-                <p className="mb-0 lh-sm fs-7">
-                  {singleOrder?.orderby?.firstname}{" "}
-                  {singleOrder?.orderby?.lastname}
-                </p>
-                <a
-                  className="fs-7 fw-light d-block"
-                  href={`mailto:${singleOrder?.orderby?.email}`}
-                >
-                  {singleOrder?.orderby?.email}
-                </a>
-                <a
-                  className="fs-7 fw-light d-block"
-                  href={`tel:${singleOrder?.orderby?.mobile}`}
-                >
-                  {singleOrder?.orderby?.mobile}
-                </a>
-              </div>
-
+                  <div className="bg-light mb-3 p-4 rounded-3">
+                    <h6 className="mb-3">Contact</h6>
+                    <p className="mb-0 lh-sm fs-7">
+                      {singleOrder?.orderby?.firstname}{" "}
+                      {singleOrder?.orderby?.lastname}
+                    </p>
+                    <a
+                      className="fs-7 fw-light d-block"
+                      href={`mailto:${singleOrder?.orderby?.email}`}
+                    >
+                      {singleOrder?.orderby?.email}
+                    </a>
+                    <a
+                      className="fs-7 fw-light d-block"
+                      href={`tel:${singleOrder?.orderby?.mobile}`}
+                    >
+                      {singleOrder?.orderby?.mobile}
+                    </a>
+                  </div>
+                </>
+              ) : null}
               <div className="bg-light mb-3 p-4 rounded-3">
                 <h6 className="mb-3">Shiping Address</h6>
                 {singleOrder?.shipingaddress

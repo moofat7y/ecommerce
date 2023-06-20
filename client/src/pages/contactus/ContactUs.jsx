@@ -6,7 +6,6 @@ import {
   BsFillTelephoneFill,
   MdEmail,
   IoLocationSharp,
-
 } from "react-icons/all";
 import Section from "../../components/Section";
 
@@ -21,13 +20,6 @@ const ContactUs = () => {
 
   return (
     <div>
-      <header className="bg-white d-flex justify-content-center py-4">
-        <span className="fs-6  text-secondary">
-          <span className="">الرئيسيه</span>
-          <BsDot className="fs-5" />
-          <span>تواصل معنا</span>
-        </span>
-      </header>
       <Section className="contact-us-wrapper-1">
         <div className="row p-3 bg-white shadow-sm rounded-3 mb-3">
           <form

@@ -40,7 +40,7 @@
   .slider {
     .slider-body {
       overflow-x: scroll;
-      scroll-snap-type: x mandatory;
+      scroll-snap-type: x proximity;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -khtml-user-select: none;

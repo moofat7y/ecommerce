@@ -15,10 +15,8 @@ const Slider = ({ children }) => {
         <button
           className="fs-5 fw-bold btn-outline-primary btn btn-sm"
           onClick={() => {
-            scrollAmountToLeft -= 150;
+            scrollAmountToLeft -= 300;
             handleSliderBtn(sliderBody.current, scrollAmountToLeft);
-            if (sliderBody.current.scrollLeft != scrollAmountToLeft)
-              scrollAmountToLeft = 0;
           }}
         >
           {"<"}
@@ -26,10 +24,8 @@ const Slider = ({ children }) => {
         <button
           className="fs-5 fw-bold btn-outline-primary btn btn-sm"
           onClick={() => {
-            scrollAmountToRight += 150;
+            scrollAmountToRight += 300;
             handleSliderBtn(sliderBody.current, scrollAmountToRight);
-            if (sliderBody.current.scrollLeft != scrollAmountToRight)
-              scrollAmountToRight = 0;
           }}
         >
           {">"}

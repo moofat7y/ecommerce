@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getStatus } from "../features/auth/authSlice";
-import { getCart, getOrders } from "../features/user/userSlice";
+import { getOrders } from "../features/user/userSlice";
 import { getWishlist } from "../features/wishlist/wishlistSlice";
 const LayOut = () => {
   const { token, isFirstLogin } = useSelector((state) => state.auth);
@@ -12,7 +12,6 @@ const LayOut = () => {
       const res = await dispatch(getStatus());
       if (res.meta.requestStatus === "fulfilled") {
         dispatch(getWishlist());
-        dispatch(getCart());
         dispatch(getOrders());
       }
     };

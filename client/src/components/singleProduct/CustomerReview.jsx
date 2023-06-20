@@ -5,6 +5,7 @@ import { notifyWarning } from "../../utils/helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { rateProduct } from "../../features/product/singleProdSlice";
+import { BsStarFill } from "react-icons/bs";
 const CustomerReview = () => {
   const [reviewStar, setReviewStar] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,21 +38,23 @@ const CustomerReview = () => {
     reset();
   };
   return (
-    <div className="p-3 bg-white shadow-sm d-flex flex-column gap-1 shadow-sm">
-      <h3 className="fs-6 fw-bold m-0">
-        Customer Review <span className="text-muted">(you)</span>
-      </h3>
-      <ul className="d-flex justify-content-end">
+    <div className="p-3 bg-white  d-flex flex-column gap-1 ">
+      <ul className="d-flex flex-wrap gap-2 px-0 justify-content-end">
         {Array.from({ length: 5 }, (ele, index) => {
+          const stars = Array.from({ length: index + 1 }, (star, i) => {
+            return (
+              <BsStarFill key={i + "star"} className="fs-6 text-warning" />
+            );
+          });
           return (
             <li
               onClick={() => setReviewStar(index + 1)}
               key={index}
-              className={`nav-link btn btn-light px-2 py-1 mx-2 ${
+              className={`nav-link shadow-sm d-flex align-items-center gap-1 btn btn-light px-2 py-1  ${
                 reviewStar === index + 1 ? "active" : null
               }`}
             >
-              {index + 1} نجوم
+              {stars}
             </li>
           );
         })}
@@ -61,10 +64,10 @@ const CustomerReview = () => {
           <textarea
             {...register("comment")}
             type="text"
-            className={`review-comment w-100 form-control shadow-sm p-2 ${
+            className={`review-comment w-100 form-control p-2 ${
               errors.comment ? "is-invalid" : null
             }`}
-            placeholder="write a review"
+            placeholder="اكتب تعليقك"
           />
           {errors.comment ? (
             <div className="invalid-feedback">{errors.comment.message}</div>

@@ -3,26 +3,12 @@ import { useDispatch } from "react-redux";
 import { updateCartQuantity } from "../../features/user/userSlice";
 
 const CartItem = ({ prod, index }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [prodQuantity, setProdQuantity] = useState(prod?.quantity);
   const dispatch = useDispatch();
-  const handleChange = async (quantity) => {
-    setIsLoading(true);
-    await dispatch(
-      updateCartQuantity({
-        prodId: prod?.product?._id,
-        color: prod?.color,
-        size: prod?.size,
-        quantity: quantity,
-      })
-    );
-    setIsLoading(false);
-  };
 
   useEffect(() => {
-    const updateQuantity = async () => {
-      setIsLoading(true);
-      const response = await dispatch(
+    const updateQuantity = () => {
+      dispatch(
         updateCartQuantity({
           prodId: prod?.product?._id,
           color: prod?.color,
@@ -30,44 +16,65 @@ const CartItem = ({ prod, index }) => {
           quantity: prodQuantity,
         })
       );
-      setIsLoading(false);
     };
 
     const timeId = setTimeout(() => {
       if (prod?.quantity !== prodQuantity) {
         updateQuantity();
       }
-    }, [1000]);
+    }, [100]);
     return () => clearTimeout(timeId);
   }, [prodQuantity]);
   return (
-    <tr>
-      <th scope="align-middle">{index}</th>
-      <td className="align-middle row">
+    <tr className={`${prod?.product.quantity <= 0 ? "border-danger" : ""}`}>
+      <td className="align-middle d-flex align-items-center">
         <img
-          className="img-thumbnail"
+          className="img-thumbnail bg-light border-0"
+          style={{ width: "80px", height: "80px", objectFit: "cover" }}
           src={prod?.product?.images[0]?.secure_url}
           alt=""
         />
-      </td>
-      <td className="align-middle">
-        <div
-          style={{
-            width: "20px",
-            height: "20px",
-            margin: "0rem 0.25rem",
-            backgroundColor: prod.color.toLowerCase(),
-          }}
-        ></div>
-      </td>
-      <td className="align-middle">
-        <span className="mx-1">{prod?.size}</span>
+        <div className="mx-1">
+          <p className="mb-0 fs-7">
+            {prod?.product.title.substring(0, 20) + ".."}
+          </p>
+          {prod.size ? (
+            <span className="mx-1">الحجم : {prod?.size}</span>
+          ) : null}
+          {prod.color ? (
+            <div
+              className="rounded-circle shadow"
+              style={{
+                width: "20px",
+                height: "20px",
+                margin: "0rem 0.25rem",
+                backgroundColor: prod.color.toLowerCase(),
+              }}
+            ></div>
+          ) : null}
+
+          <span
+            onClick={() =>
+              dispatch(
+                updateCartQuantity({
+                  prodId: prod?.product?._id,
+                  color: prod?.color,
+                  size: prod?.size,
+                  quantity: 0,
+                })
+              )
+            }
+            role="button"
+            className="text-danger mb-0 mt-3 fw-light"
+          >
+            حذف
+          </span>
+        </div>
       </td>
       <td className="align-middle">{prod.product.price} جنيه</td>
       <td className="align-middle">
         <div className="d-flex align-items-center">
           <button
-            disabled={isLoading}
             onClick={() =>
               setProdQuantity((prev) => (prev + 1 > 10 ? prev : prev + 1))
             }
@@ -79,7 +86,6 @@ const CartItem = ({ prod, index }) => {
             style={{ maxWidth: "32px", minWidth: "32px" }}
             min={0}
             max={10}
-            disabled={isLoading}
             aria-controls="false"
             onChange={(e) =>
               e.target.value < 0
@@ -93,7 +99,6 @@ const CartItem = ({ prod, index }) => {
             className="px-1 form-control d-inline-block mx-2"
           />
           <button
-            disabled={isLoading}
             onClick={() =>
               setProdQuantity((prev) => (prev - 1 < 0 ? prev : prev - 1))
             }

@@ -8,9 +8,9 @@ const HeaderCart = () => {
   return (
     <NavLink
       to="/cart"
-      className="d-flex position-relative align-items-center mx-2 nav-link"
+      className="d-flex position-relative align-items-center nav-link"
     >
-      <FaOpencart className="fs-5 mx-1" />
+      <FaOpencart className="fs-5 " />
       {cart ? (
         <span className="position-absolute fs-9  top-0 start-100 translate-middle badge rounded-pill bg-primary">
           {cart?.products.length}

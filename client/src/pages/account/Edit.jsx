@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BsDot } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import LoadingBtn from "../../components/loading/LoadingBtn";
@@ -49,15 +48,11 @@ const Edit = () => {
 
   return (
     <>
-      <header className="bg-white d-flex justify-content-center py-4">
-        <span className="fs-6  text-secondary">
-          <span className="">الرئيسيه</span>
-          <BsDot className="fs-5" />
-          <span>حسابي</span>
-        </span>
-      </header>
       <div className="container">
-        <div className=" d-flex py-5 justify-content-center align-items-center">
+        <div
+          style={{ height: "90vh" }}
+          className=" d-flex py-5 justify-content-center align-items-center"
+        >
           <form
             style={{ minWidth: "360px", width: "30%" }}
             className="  shadow bg-white  px-4 py-3 rounded-3"

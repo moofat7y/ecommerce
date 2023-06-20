@@ -156,8 +156,8 @@ const Filters = ({ setSortBy, sortBy }) => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-">
-          بدأ
+        <button type="submit" className="btn btn-primary mt-2">
+          بحث
         </button>
       </form>
     </div>

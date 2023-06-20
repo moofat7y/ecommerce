@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authRed from "../features/auth/authSlice";
 import productRed from "../features/product/productSlice";
 import featuredRed from "../features/product/featuredProdSlice";
+import bestsellerRed from "../features/product/bestseller";
 import popularRed from "../features/product/popularProdSlice";
 import singleProdRed from "../features/product/singleProdSlice";
 import userRed from "../features/user/userSlice";
@@ -20,5 +21,6 @@ export const store = configureStore({
     popularProd: popularRed,
     singleProd: singleProdRed,
     wishlist: wishlistRed,
+    bestseller: bestsellerRed,
   },
 });

@@ -42,14 +42,6 @@ const Store = () => {
 
   return (
     <div className="store">
-      <header className="bg-white d-flex justify-content-center py-4">
-        <span className="fs-6  text-secondary">
-          <span className="">الرئيسيه</span>
-          <BsDot className="fs-5" />
-          <span>متجرنا</span>
-        </span>
-      </header>
-
       <div className="container">
         <div className="row my-3">
           <FiltersMobile setSortBy={setSortBy} sortBy={sortBy} />

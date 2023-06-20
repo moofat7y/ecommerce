@@ -5,8 +5,8 @@ const updateUser = async (data) => {
   return response.data;
 };
 
-const getCart = async () => {
-  const response = await api.get("/user/cart");
+const getCart = async (cart) => {
+  const response = await api.post("/user/cart", { cart });
 
   return response.data;
 };
@@ -26,8 +26,8 @@ const updateCartQuantity = async (prodId, color, size, quantity) => {
   return response.data;
 };
 
-const createOrder = async (shipingaddress) => {
-  const response = await api.put("user/create-order", { shipingaddress });
+const createOrder = async (shipingaddress, cart) => {
+  const response = await api.put("user/create-order", { shipingaddress, cart });
   return response.data;
 };
 

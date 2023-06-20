@@ -42,6 +42,20 @@ export const notifyError = (message) => {
   });
 };
 
+export const notifyInfo = (message) => {
+  toast.info(message, {
+    position: "top-left",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    rtl: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
 export const sorts = [
   { label: "الكل", value: "all" },
   { label: "من الاعلي سعرا للاقل", value: "sort=-price" },

@@ -19,7 +19,7 @@ const OrderConfirm = () => {
   } = useForm();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!state) {
+    if (!state?.cart) {
       navigate("/");
       return;
     }
@@ -30,10 +30,9 @@ const OrderConfirm = () => {
       setValue("mobile", user?.mobile);
     }
   }, []);
-
   const onSubmit = async (data) => {
     setIsLoading(true);
-    await dispatch(createOrder({ data, navigate }));
+    await dispatch(createOrder({ data, cart: state.cart, navigate }));
     setIsLoading(false);
   };
   return (
@@ -123,7 +122,7 @@ const OrderConfirm = () => {
                     message: "الرجاء رقم هاتف صحيح",
                   },
                 })}
-                type="number"
+                type="tel"
                 className={`form-control px-3 py-2 rounded-0 ${
                   errors.mobile ? "is-invalid" : ""
                 }`}

@@ -11,7 +11,7 @@ const ReviewList = () => {
     return (
       <div
         key={review.postedBy._id}
-        className="p-3 bg-white shadow-sm d-flex flex-column gap-1 shadow-sm"
+        className="p-3 bg-light shadow-sm d-flex flex-column gap-1 shadow-sm"
       >
         <div className="d-flex align-items-center gap-3">
           <h3 className="fs-6 fw-bold m-0">
@@ -28,7 +28,7 @@ const ReviewList = () => {
       </div>
     );
   });
-  return <div className="reviews">{review_list}</div>;
+  return <div className="reviews d-flex flex-column gap-3">{review_list}</div>;
 };
 
 export default ReviewList;

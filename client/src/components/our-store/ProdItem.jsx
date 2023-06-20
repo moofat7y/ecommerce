@@ -1,38 +1,24 @@
 import React, { useState } from "react";
 import Star from "./Star";
-import { AiOutlineEye, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 import { FaOpencart } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/user/userSlice";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { notifyError } from "../../utils/helpers";
 import WishList from "./WishList";
 const ProdItem = ({ prod, extraClass }) => {
   const dispatch = useDispatch();
-  const [cartLoading, setCartLoading] = useState(false);
   const [prodColor, setProdColor] = useState("");
   const [size, setSize] = useState("");
-  const { token } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-  const onAdd = async () => {
-    if (!token) {
-      navigate("/auth/signin");
-      return;
+  const onAdd = () => {
+    if (prod?.size?.length > 0 && !size) {
+      return notifyError("من فضلك اختر الحجم");
     }
-    try {
-      if (prod?.size?.length > 0 && !size) {
-        return notifyError("من فضلك اختر الحجم");
-      }
-      if (prod?.colors?.length > 0 && !prodColor) {
-        return notifyError("يجب عليك ادخال اللون");
-      }
-      setCartLoading(true);
-
-      await dispatch(addToCart({ prodId: prod?._id, color: prodColor, size }));
-      setCartLoading(false);
-    } catch (error) {
-      setCartLoading(false);
+    if (prod?.colors?.length > 0 && !prodColor) {
+      return notifyError("يجب عليك ادخال اللون");
     }
+    dispatch(addToCart({ product: prod, color: prodColor, size }));
   };
   return (
     <div
@@ -40,18 +26,19 @@ const ProdItem = ({ prod, extraClass }) => {
         extraClass ? extraClass : "col-6 col-sm-6 col-lg-4 col-xl-3 "
       }`}
     >
-      <div className="card h-100 bg-light shadow border-0 position-relative">
+      <div className="card h-100 bg-light shadow-sm border-0 position-relative">
         <WishList prodId={prod?._id} />
         <div className="ratio ratio-4x3 ">
           <img
             src={prod?.images[0].secure_url}
             className="w-100 h-100 "
             alt="..."
+            loading="lazy"
             style={{ objectFit: "contain" }}
           />
         </div>
 
-        <div className="card-body px-1 px-md-3">
+        <div className="card-body d-flex flex-column px-1 px-md-3">
           <h5 className="card-title">
             <Link to={`/ourstore/${prod?._id}`} className="nav-link">
               {prod?.title}
@@ -62,7 +49,7 @@ const ProdItem = ({ prod, extraClass }) => {
           <span className="lh-sm">{prod?.price}جنيه </span>
           <div
             style={{ maxHeight: "20px" }}
-            className="d-flex  align-items-center justify-content-between"
+            className="d-flex mb-3 align-items-center justify-content-between"
           >
             {prod?.colors ? (
               <ul className="p-0 d-flex gap-1 mb-0 colors align-items-center">
@@ -109,10 +96,9 @@ const ProdItem = ({ prod, extraClass }) => {
               </div>
             ) : null}
           </div>
-          <div className="buttons  gap-2 d-flex mt-3">
+          <div className="buttons gap-2 d-flex mt-auto">
             <button
               onClick={() => onAdd()}
-              disabled={cartLoading ? true : false}
               className="btn btn-light shadow-sm text-primary w-50"
             >
               <FaOpencart />

@@ -171,7 +171,6 @@ const AddProduct = () => {
               <Controller
                 control={control}
                 name="colors"
-                rules={{ required: "Colors required" }}
                 render={({ field }) => (
                   <Select
                     placeholder="Select color"

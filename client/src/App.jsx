@@ -35,9 +35,12 @@ import { getPopularProducts } from "./features/product/popularProdSlice";
 import { getProducts } from "./features/product/productSlice";
 import Loading from "./components/loading/Loading";
 import NotFound from "./pages/notfound/NotFound";
+import { getCart } from "./features/user/userSlice";
+import { getBestSellerProducts } from "./features/product/bestseller";
 
 function App() {
   const { isLogin } = useSelector((state) => state.auth);
+  const cart = JSON.parse(localStorage.getItem("cart"));
   const dispatch = useDispatch();
   const ProtectedRoute = ({ login, children }) => {
     if (!login) {
@@ -53,6 +56,10 @@ function App() {
     dispatch(getProducts({ query: null }));
     dispatch(getFeaturedProducts({ query: "limit=10&tag=featured" }));
     dispatch(getPopularProducts({ query: "limit=10&tag=popular" }));
+    dispatch(getBestSellerProducts({ query: "limit=10&sort=-sold" }));
+    if (cart) {
+      dispatch(getCart({ cart }));
+    }
   }, []);
 
   return (
@@ -82,14 +89,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/ourstore" element={<Store />} />
             <Route path="/ourstore/:prodId" element={<SingleProduct />} />
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute login={isLogin}>
-                  <Cart />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/cart/confirm-order" element={<OrderConfirm />} />
             <Route
               path="/orders-tracker"

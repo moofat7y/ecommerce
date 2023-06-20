@@ -1,19 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Section from "../Section";
 import Slider from "../slider/Slider";
-import { useSelector } from "react-redux";
 import ProdItem from "../our-store/ProdItem";
 
-const FeatureCollection = () => {
-  const { products, isLoading } = useSelector((state) => state.featuredProd);
+const BestSeller = () => {
+  const { products, isLoading } = useSelector((state) => state.bestseller);
 
   const prod_list = products?.map((prod) => {
     return <ProdItem key={prod?._id} prod={prod} />;
   });
   return (
-    <Section className="home-wrapper-4">
+    <Section className="home-wrapper-6">
       <div className="row flex-column gap-3">
-        <h5 className="fs-5 fw-bold text-capitalize">المنتجات المميزه</h5>
+        <h5 className="fs-5 fw-bold text-capitalize">الاكثر مبيعا</h5>
         <Slider>
           {isLoading ? (
             <>
@@ -89,4 +89,4 @@ const FeatureCollection = () => {
   );
 };
 
-export default FeatureCollection;
+export default BestSeller;
