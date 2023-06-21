@@ -26,7 +26,7 @@ const ProdItem = ({ prod, extraClass }) => {
         extraClass ? extraClass : "col-6 col-sm-6 col-lg-4 col-xl-3 "
       }`}
     >
-      <div className="card h-100 bg-light shadow-sm border-0 position-relative">
+      <div className="card overflow-hidden h-100 bg-light shadow-sm border-0 position-relative">
         <WishList prodId={prod?._id} />
         <div className="ratio ratio-4x3 ">
           <img
