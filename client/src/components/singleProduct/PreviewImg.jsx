@@ -14,7 +14,7 @@ const PreviewImg = () => {
         <div className="image">
           <img
             className="w-100 h-100"
-            style={{ objectFit: "contain", maxHeight: "420px" }}
+            style={{ objectFit: "cover", maxHeight: "420px" }}
             src={previewImgSrc}
             loading="lazy"
             alt="product-image"
@@ -28,7 +28,7 @@ const PreviewImg = () => {
         {product.images?.map((img) => {
           return (
             <img
-              style={{ width: "20%" }}
+              style={{ width: "20%", objectFit: "cover" }}
               key={img.public_id}
               role="button"
               onClick={changePreviewImg}

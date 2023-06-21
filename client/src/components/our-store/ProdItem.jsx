@@ -34,7 +34,7 @@ const ProdItem = ({ prod, extraClass }) => {
             className="w-100 h-100 "
             alt="..."
             loading="lazy"
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "cover" }}
           />
         </div>
 
