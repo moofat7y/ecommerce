@@ -17,8 +17,11 @@ const BestSeller = () => {
         <Slider>
           {isLoading ? (
             <>
-              <div className="col-12 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
-                <div className="card shadow-sm border-0" aria-hidden="true">
+              <div className="col-6 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
+                <div
+                  className="card loading shadow-sm border-0"
+                  aria-hidden="true"
+                >
                   <div className="ratio ratio-4x3">
                     <div className="card-img-top"></div>
                   </div>
@@ -38,8 +41,11 @@ const BestSeller = () => {
                 </div>
               </div>
 
-              <div className="col-12 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
-                <div className="card shadow-sm border-0" aria-hidden="true">
+              <div className="col-6 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
+                <div
+                  className="card loading shadow-sm border-0"
+                  aria-hidden="true"
+                >
                   <div className="ratio ratio-4x3">
                     <div className="card-img-top"></div>
                   </div>
@@ -58,9 +64,11 @@ const BestSeller = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="col-12 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
-                <div className="card shadow-sm border-0" aria-hidden="true">
+              <div className="col-6 col-sm-6 col-lg-4 col-xl-3  px-1 mb-2">
+                <div
+                  className="card loading shadow-sm border-0"
+                  aria-hidden="true"
+                >
                   <div className="ratio ratio-4x3">
                     <div className="card-img-top"></div>
                   </div>

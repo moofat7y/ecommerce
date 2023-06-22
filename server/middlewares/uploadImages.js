@@ -33,8 +33,8 @@ const productImgResize = async (req, res, next) => {
     req.files.map(async (file) => {
       await sharp(file.path)
         .resize(300, 300, {
-          fit: "contain",
-          background: { r: 248, g: 249, b: 250 },
+          fit: sharp.fit.inside,
+          // if image's original width or height is less than specified width and height, sharp will do nothing(i.e no enlargement)
         })
         .toFormat("jpeg")
         .jpeg({ quality: 90 })

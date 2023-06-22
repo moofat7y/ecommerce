@@ -9,8 +9,8 @@ const PreviewImg = () => {
     setPreviewImgSrc(e.currentTarget.src);
   };
   return (
-    <div className="col-12 position-relative col-md-6 col-xl-4 d-flex gap-2 flex-column">
-      <div className="preview-img perimeter">
+    <div className="col-12  col-md-6 col-xl-4 d-flex gap-2 flex-column">
+      <div className="preview-img position-relative perimeter">
         <div className="image">
           <img
             className="w-100 h-100"
@@ -20,25 +20,25 @@ const PreviewImg = () => {
             alt="product-image"
           />
         </div>
-      </div>
-      <div
-        style={{ top: "10px", right: "10px" }}
-        className="images position-absolute d-flex flex-column gap-2"
-      >
-        {product.images?.map((img) => {
-          return (
-            <img
-              style={{ width: "20%", objectFit: "cover" }}
-              key={img.public_id}
-              role="button"
-              onClick={changePreviewImg}
-              src={img?.secure_url}
-              alt="..."
-              loading="lazy"
-              className="ratio ratio-1x1 rounded-3 shadow-sm"
-            />
-          );
-        })}
+        <div
+          style={{ top: "10px", right: "10px", bottom: "10px" }}
+          className="images align-content-start flex-wrap position-absolute d-flex flex-column gap-2"
+        >
+          {product.images?.map((img) => {
+            return (
+              <img
+                style={{ width: "20%", objectFit: "cover" }}
+                key={img.public_id}
+                role="button"
+                onClick={changePreviewImg}
+                src={img?.secure_url}
+                alt="..."
+                loading="lazy"
+                className="ratio ratio-1x1 rounded-3 shadow-sm"
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
