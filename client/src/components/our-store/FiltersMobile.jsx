@@ -45,7 +45,11 @@ const FiltersMobile = ({ setSortBy, sortBy }) => {
       id="filterd-ref"
       style={{ height: "71.2px" }}
     >
-      <div id="slider-ref" className=" px-2 col-12 mb-3 bg-white">
+      <div
+        style={{ zIndex: 7 }}
+        id="slider-ref"
+        className=" px-2 col-12 mb-3 bg-white"
+      >
         <div className="mobile-filters py-2">
           <div className="d-flex gap-2 flex-nowrap">
             <div

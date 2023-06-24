@@ -65,7 +65,10 @@ function App() {
   return (
     <Suspense
       fallback={
-        <div className="position-fixed top-0 start-0 vh-100 w-100 d-flex align-items-center justify-content-center">
+        <div
+          style={{ zIndex: 1000 }}
+          className="position-fixed top-0 start-0 vh-100 w-100 d-flex align-items-center justify-content-center"
+        >
           <Loading />
         </div>
       }
