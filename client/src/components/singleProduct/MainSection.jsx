@@ -98,7 +98,9 @@ const MainSection = () => {
               {product.colors.map((color, index) => {
                 return (
                   <li
-                    onClick={() => setProdColor(color)}
+                    onClick={() =>
+                      setProdColor((prev) => (prev === color ? null : color))
+                    }
                     key={index}
                     role="button"
                     className={`rounded-circle nav-link shadow ${

@@ -52,29 +52,33 @@ const ProdItem = ({ prod, extraClass }) => {
             className="d-flex mb-3 align-items-center justify-content-between"
           >
             {prod?.colors ? (
-              <ul className="p-0 d-flex gap-1 mb-0 colors align-items-center">
+              <ul className="p-0 d-flex gap-2 mb-0 colors align-items-center">
                 {prod.colors.map((color, index) => {
                   if (index > 1) {
                     return;
                   }
                   return (
                     <li
-                      onClick={() => setProdColor(color)}
+                      onClick={() =>
+                        setProdColor((prev) => (prev === color ? null : color))
+                      }
                       key={index}
                       role="button"
                       className={`rounded-circle shadow nav-link ${
                         color === prodColor ? "active" : ""
                       }`}
                       style={{
-                        width: "20px",
-                        height: "20px",
+                        width: "15px",
+                        height: "15px",
                         backgroundColor: color.toLowerCase(),
                       }}
                     ></li>
                   );
                 })}
                 {prod?.colors?.length > 2 ? (
-                  <span className="mb-0 lh-1">+{prod.colors.length - 2}</span>
+                  <span className="mb-0 lh-1 fs-7">
+                    +{prod.colors.length - 2}
+                  </span>
                 ) : null}
               </ul>
             ) : null}

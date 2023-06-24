@@ -48,7 +48,9 @@ const CustomerReview = () => {
           });
           return (
             <li
-              onClick={() => setReviewStar(index + 1)}
+              onClick={() =>
+                setReviewStar((prev) => (prev === index + 1 ? null : index + 1))
+              }
               key={index}
               className={`nav-link shadow-sm d-flex align-items-center gap-1 btn btn-light px-2 py-1  ${
                 reviewStar === index + 1 ? "active" : null

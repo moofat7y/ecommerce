@@ -11218,10 +11218,24 @@ input[type=number] {
 .products .card.position-relative .colors li {
   opacity: 1;
   transition: 0.2s ease-in-out;
+  position: relative;
 }
-.products .card.position-relative .colors li.active {
-  transform: translateY(-2px);
-  box-shadow: 0px 0px 1px 2px gray !important;
+.products .card.position-relative .colors li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 1px solid transparent;
+  background-color: inherit;
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+}
+.products .card.position-relative .colors li.active::before {
+  background-color: transparent;
+  border-color: black;
 }
 
 .card:not(.loading) .card-title,
